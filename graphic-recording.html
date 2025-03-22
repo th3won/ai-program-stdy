@@ -1,0 +1,487 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>기술은 세상을 어떻게 바꾸는가 - 그래픽 레코딩</title>
+    <link href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard/dist/web/static/pretendard.css" rel="stylesheet">
+    <style>
+        :root {
+            --primary-color: #7B4AFF;
+            --neutral-1: #F5F5F7;
+            --neutral-2: #DDDDDD;
+            --neutral-3: #666666;
+            --neutral-4: #1A1A1A;
+            --border-radius: 20px;
+            --card-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Pretendard', sans-serif;
+            background-color: var(--neutral-1);
+            color: var(--neutral-4);
+            line-height: 1.6;
+            padding: 40px 20px;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        header {
+            text-align: center;
+            margin-bottom: 60px;
+        }
+        
+        h1 {
+            font-size: 32px;
+            font-weight: bold;
+            color: var(--neutral-4);
+            margin-bottom: 16px;
+        }
+        
+        .subtitle {
+            font-size: 24px;
+            font-weight: bold;
+            color: var(--primary-color);
+        }
+        
+        .section {
+            margin-bottom: 60px;
+        }
+        
+        .section-title {
+            font-size: 24px;
+            font-weight: bold;
+            color: var(--primary-color);
+            margin-bottom: 24px;
+            position: relative;
+            display: inline-block;
+        }
+        
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: -8px;
+            left: 0;
+            width: 100%;
+            height: 3px;
+            background-color: var(--primary-color);
+            border-radius: 2px;
+        }
+        
+        .card-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 24px;
+            margin-bottom: 40px;
+        }
+        
+        .card {
+            background-color: white;
+            border-radius: var(--border-radius);
+            padding: 24px;
+            box-shadow: var(--card-shadow);
+            flex: 1;
+            min-width: 280px;
+            position: relative;
+        }
+        
+        .card-title {
+            font-size: 22px;
+            font-weight: bold;
+            color: var(--neutral-4);
+            margin-bottom: 16px;
+        }
+        
+        .card-content {
+            font-size: 16px;
+            color: var(--neutral-3);
+        }
+        
+        .card-badge {
+            display: inline-block;
+            background-color: var(--primary-color);
+            color: white;
+            font-size: 14px;
+            font-weight: bold;
+            padding: 6px 12px;
+            border-radius: 12px;
+            margin-bottom: 12px;
+        }
+        
+        .insight-bar {
+            background-color: #444444;
+            color: white;
+            padding: 16px 24px;
+            border-radius: var(--border-radius);
+            margin-bottom: 40px;
+            font-weight: 500;
+        }
+        
+        .quote {
+            padding: 16px 24px;
+            border-left: 4px solid var(--primary-color);
+            background-color: rgba(123, 74, 255, 0.05);
+            margin: 24px 0;
+        }
+        
+        .chart-card {
+            background-color: white;
+            border-radius: var(--border-radius);
+            padding: 30px;
+            box-shadow: var(--card-shadow);
+            margin-bottom: 40px;
+        }
+        
+        .donut-chart {
+            width: 200px;
+            height: 200px;
+            margin: 0 auto 24px;
+            position: relative;
+        }
+        
+        .donut-chart svg {
+            width: 100%;
+            height: 100%;
+            transform: rotate(-90deg);
+        }
+        
+        .donut-chart .center-text {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            text-align: center;
+            font-weight: bold;
+        }
+        
+        .progress-container {
+            margin-bottom: 16px;
+        }
+        
+        .progress-label {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 8px;
+            font-weight: 500;
+        }
+        
+        .progress-bar {
+            height: 10px;
+            background-color: var(--neutral-2);
+            border-radius: 5px;
+            overflow: hidden;
+        }
+        
+        .progress {
+            height: 100%;
+            background-color: var(--primary-color);
+            border-radius: 5px;
+        }
+        
+        .connector {
+            display: flex;
+            justify-content: center;
+            margin: 16px 0;
+        }
+        
+        .connector-line {
+            width: 2px;
+            height: 40px;
+            background-color: var(--primary-color);
+            position: relative;
+        }
+        
+        .connector-line::before, .connector-line::after {
+            content: '';
+            position: absolute;
+            width: 12px;
+            height: 12px;
+            background-color: var(--primary-color);
+            border-radius: 50%;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+        
+        .connector-line::before {
+            top: 0;
+        }
+        
+        .connector-line::after {
+            bottom: 0;
+        }
+        
+        .icon {
+            width: 64px;
+            height: 64px;
+            margin-bottom: 16px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background-color: rgba(123, 74, 255, 0.1);
+            border-radius: 50%;
+        }
+        
+        footer {
+            text-align: center;
+            margin-top: 80px;
+            padding-top: 24px;
+            border-top: 1px solid var(--neutral-2);
+            color: var(--neutral-3);
+            font-size: 14px;
+        }
+        
+        @media (max-width: 768px) {
+            .card-container {
+                flex-direction: column;
+            }
+            
+            .card {
+                width: 100%;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <div class="subtitle">서울대 이정동 교수의</div>
+            <h1>기술은 세상을 어떻게 바꾸는가</h1>
+        </header>
+        
+        <section class="section">
+            <h2 class="section-title">혁신적 기술의 탄생 원리</h2>
+            <div class="insight-bar">
+                "창의적 천재는 없다. 누구나 혁신적 기술을 만들어낼 수 있다."
+            </div>
+            
+            <div class="card-container">
+                <div class="card">
+                    <div class="card-title">동시 발견의 원리</div>
+                    <div class="card-content">
+                        <p>에디슨의 백열전구도 당시 25명 이상이 유사한 아이디어를 가지고 있었다. 상대성 이론도 3-5명이 아인슈타인과 비슷한 등식을 만들었다.</p>
+                        <div class="quote">
+                            "에디슨이나 아인슈타인을 꼭 창의적인 사람이라고 블랙박스처럼 만들어서 숭상할 필요가 없다. 누구나 놀라운 것을 만들어낼 수 있다."
+                        </div>
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="card-title">기술 진화의 시점</div>
+                    <div class="card-content">
+                        <p>당시에 필요한 조합의 재료들이 성숙해지면 누군가가 기술을 만들어낼 수 있는 시점이 된다. 스마트폰도 스티브 잡스가 아닌 한국의 누군가가 만들 수도 있었다.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <section class="section">
+            <h2 class="section-title">생물 진화와 기술 진화의 공통점</h2>
+            
+            <div class="chart-card">
+                <div class="card-title" style="text-align: center;">다윈의 자연 선택 원리와 기술 진화</div>
+                <div class="donut-chart">
+                    <svg viewBox="0 0 100 100">
+                        <circle cx="50" cy="50" r="40" fill="none" stroke="var(--neutral-2)" stroke-width="10"/>
+                        <circle cx="50" cy="50" r="40" fill="none" stroke="var(--primary-color)" stroke-width="10" stroke-dasharray="251.2" stroke-dashoffset="62.8"/>
+                    </svg>
+                    <div class="center-text">
+                        <div style="font-size: 24px; color: var(--primary-color);">75%</div>
+                        <div style="font-size: 14px; color: var(--neutral-3);">일치율</div>
+                    </div>
+                </div>
+                
+                <div class="card-container" style="margin-top: 40px;">
+                    <div class="card">
+                        <div class="card-badge">생물 진화</div>
+                        <div class="card-content">
+                            <p>다윈의 관찰: 다양한 비둘기 품종을 육종하는 과정을 통해 자연선택 이론 발견</p>
+                            <p>원리: <strong>변이(많은 시도) → 선택(좋은 것 선택) → 전승(축적)</strong></p>
+                        </div>
+                    </div>
+                    <div class="card">
+                        <div class="card-badge">기술 진화</div>
+                        <div class="card-content">
+                            <p>최초의 질문(변이)을 던지고 스케일업(선택과 축적)하는 과정</p>
+                            <p>예: 아이폰, 진공청소기, 스페이스X의 재활용 로켓 등 모두 같은 원리로 진화</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <section class="section">
+            <h2 class="section-title">기술 진화의 5가지 핵심 원리</h2>
+            
+            <div class="card-container">
+                <div class="card">
+                    <div class="icon">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="var(--primary-color)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M8 3H5a2 2 0 0 0-2 2v3m18 0V5a2 2 0 0 0-2-2h-3m0 18h3a2 2 0 0 0 2-2v-3M3 16v3a2 2 0 0 0 2 2h3"></path>
+                        </svg>
+                    </div>
+                    <div class="card-title">조합의 원리</div>
+                    <div class="card-content">
+                        <p>탁월한 기술의 대부분은 조합의 산물이다. A와 B가 합쳐져 C가 되는 것으로, 스마트폰처럼 다양한 기능을 결합한 사례가 대표적이다.</p>
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="icon">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="var(--primary-color)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path>
+                            <polyline points="9 22 9 12 15 12 15 22"></polyline>
+                        </svg>
+                    </div>
+                    <div class="card-title">굴절 적응</div>
+                    <div class="card-content">
+                        <p>처음 A 목적으로 만들었으나 B 목적으로 사용되는 경우. 비만약이 당뇨치료제로 사용되는 것처럼 원래 의도와 다른 방향으로 활용되는 현상.</p>
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="icon">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="var(--primary-color)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <polyline points="23 6 13.5 15.5 8.5 10.5 1 18"></polyline>
+                            <polyline points="17 6 23 6 23 12"></polyline>
+                        </svg>
+                    </div>
+                    <div class="card-title">스몰 베팅</div>
+                    <div class="card-content">
+                        <p>"자연은 도약하지 않는다" - 기술도 한 번에 큰 발전을 이루지 않고 작은 단계로 점진적으로 진화한다. 구글의 성장도 논문 검색→이메일→동영상→AI로 점진적 확장.</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="card-container">
+                <div class="card">
+                    <div class="icon">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="var(--primary-color)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M17 3a2.828 2.828 0 1 1 4 4L7.5 20.5 2 22l1.5-5.5L17 3z"></path>
+                        </svg>
+                    </div>
+                    <div class="card-title">경험의 축적과 전수</div>
+                    <div class="card-content">
+                        <p>시행착오가 아닌 '시행 학습'을 통해 경험을 쌓고 이를 다음 세대로 전수하는 것. 실패를 통해 배우는 문화가 중요하다.</p>
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="icon">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="var(--primary-color)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"></path>
+                            <polyline points="3.27 6.96 12 12.01 20.73 6.96"></polyline>
+                            <line x1="12" y1="22.08" x2="12" y2="12"></line>
+                        </svg>
+                    </div>
+                    <div class="card-title">생태계와 공생</div>
+                    <div class="card-content">
+                        <p>모든 기술을 혼자 갖고 있을 수 없기 때문에 기업들이 서로 협력하는 생태계가 중요하다. TSMC 주변의 수천 개 기업이 함께 성장하는 모델이 대표적.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <section class="section">
+            <h2 class="section-title">도전적 질문으로 혁신 이끌기</h2>
+            
+            <div class="insight-bar">
+                "최초의 질문을 던지고 스케일업하라"
+            </div>
+            
+            <div class="card-container">
+                <div class="card">
+                    <div class="card-title">로드맵을 바꾸는 질문</div>
+                    <div class="card-content">
+                        <p>모든 업계에는 지배적인 로드맵이 있다. 로드맵을 벗어나는 의지를 담은 질문은 좋은 질문이다.</p>
+                        <p>예: 재활용 로켓, 먼지 필터 없는 청소기, 지구 궤도 통신 위성망 등</p>
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="card-title">스케일업의 중요성</div>
+                    <div class="card-content">
+                        <p>첫 번째 시도는 완성형일 수 없다. 지속적인 개선과 반복을 통해 성공에 도달한다.</p>
+                        <p>스페이스X는 13년 동안의 끊임없는 시도 끝에 재활용 로켓 착륙에 성공했다.</p>
+                        <div class="quote">
+                            "실패라는 말 대신 '시행 학습'이라고 부르자. 실패에서 배우는 것이 중요하다."
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="chart-card">
+                <div class="card-title">한국 산업의 도전 과제</div>
+                
+                <div class="progress-container">
+                    <div class="progress-label">
+                        <span>개념 설계 역량</span>
+                        <span>45%</span>
+                    </div>
+                    <div class="progress-bar">
+                        <div class="progress" style="width: 45%"></div>
+                    </div>
+                </div>
+                
+                <div class="progress-container">
+                    <div class="progress-label">
+                        <span>실행 역량</span>
+                        <span>80%</span>
+                    </div>
+                    <div class="progress-bar">
+                        <div class="progress" style="width: 80%"></div>
+                    </div>
+                </div>
+                
+                <div class="progress-container">
+                    <div class="progress-label">
+                        <span>도전적 질문 문화</span>
+                        <span>35%</span>
+                    </div>
+                    <div class="progress-bar">
+                        <div class="progress" style="width: 35%"></div>
+                    </div>
+                </div>
+                
+                <div class="card-content" style="margin-top: 24px;">
+                    <p>한국은 선진국의 개념 설계를 바탕으로 '잘 만들기' 경쟁에서 성공했으나, 이제는 중국이 이 영역에서 한국을 넘어서고 있다. 심지어 중국은 자체적인 개념 설계와 로드맵을 만들어내고 있다(예: 딥시크).</p>
+                    <p>미래 경쟁력을 위해서는 한국도 개념 설계와 자체 로드맵을 창출하는 능력을 키워야 한다.</p>
+                </div>
+            </div>
+        </section>
+        
+        <section class="section">
+            <h2 class="section-title">그랜드 퀘스트 프로젝트</h2>
+            
+            <div class="card-container">
+                <div class="card">
+                    <div class="card-badge">도전 과제</div>
+                    <div class="card-title">미래 변화를 이끌 10대 질문</div>
+                    <div class="card-content">
+                        <p>이정동 교수팀은 한국의 10개 주요 산업 분야에서 각각 도전적인 질문을 발굴하는 '그랜드 퀘스트' 프로젝트를 진행 중이다.</p>
+                        <p>예시 질문들:</p>
+                        <ul style="margin-left: 20px; margin-top: 10px;">
+                            <li>인공지능으로 항체를 설계할 수 있는가?</li>
+                            <li>종양 발생 가능성 없이 역노화가 가능한가?</li>
+                            <li>미생물이 CO2를 먹고 플라스틱을 생산할 수 있는가?</li>
+                            <li>태양광 효율을 60%까지 높일 수 있는가?</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="quote" style="font-size: 18px; text-align: center; margin: 40px 0;">
+                "탁월한 기술을 꿈꾸는 사람들은 창조적 마인드를 배우기 위해 지금도 무덤 속에 있는 에디슨과 스티브잡스를 끊임없이 소환한다.<br>
+                탁월한 전재가 아니더라도 누구나 혁신적 기술을 만들어낼 수 있다. 기술의 미래는 인간이 결정한다."
+            </div>
+        </section>
+        
+        <footer>
+            출처: 이정동, '기술은 세상을 어떻게 바꾸는가' | EBS 책과 함께 인터뷰 영상 기반 그래픽 레코딩
+        </footer>
+    </div>
+</body>
+</html>

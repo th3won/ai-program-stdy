@@ -1,0 +1,716 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>2025 개발자 공부 전략 및 유망 분야</title>
+  <!-- Pretendard 폰트 적용 -->
+  <link rel="stylesheet" as="style" crossorigin href="https://cdnjs.cloudflare.com/ajax/libs/pretendard/1.3.6/static/pretendard.min.css" />
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.9.1/chart.min.js"></script>
+  <style>
+    :root {
+      --primary-1: #7B4AFF;
+      --neutral-1: #F5F5F7;
+      --neutral-2: #DDDDDD;
+      --neutral-3: #666666;
+      --neutral-4: #1A1A1A;
+    }
+    
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Pretendard', sans-serif;
+    }
+    
+    body {
+      background-color: var(--neutral-1);
+      color: var(--neutral-4);
+      padding: 40px 20px;
+      line-height: 1.6;
+    }
+    
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+    
+    .header {
+      text-align: center;
+      margin-bottom: 60px;
+    }
+    
+    .page-title {
+      font-size: 32px;
+      font-weight: bold;
+      color: var(--neutral-4);
+      margin-bottom: 16px;
+    }
+    
+    .section-title {
+      font-size: 24px;
+      font-weight: bold;
+      color: var(--primary-1);
+      margin-bottom: 24px;
+      position: relative;
+      display: inline-block;
+    }
+    
+    .section-title::after {
+      content: '';
+      position: absolute;
+      bottom: -8px;
+      left: 0;
+      width: 100%;
+      height: 3px;
+      background-color: var(--primary-1);
+      border-radius: 2px;
+    }
+    
+    .card-container {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 24px;
+      margin-bottom: 50px;
+    }
+    
+    .card {
+      background-color: white;
+      border-radius: 20px;
+      padding: 24px;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
+      flex: 1;
+      min-width: 280px;
+      position: relative;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+    
+    .card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 8px 25px rgba(123, 74, 255, 0.15);
+    }
+    
+    .card-title {
+      font-size: 22px;
+      font-weight: bold;
+      color: var(--neutral-4);
+      margin-bottom: 16px;
+      display: flex;
+      align-items: center;
+    }
+    
+    .card-title::before {
+      content: '';
+      display: inline-block;
+      width: 10px;
+      height: 10px;
+      background-color: var(--primary-1);
+      border-radius: 50%;
+      margin-right: 10px;
+    }
+    
+    .card-content {
+      font-size: 16px;
+      color: var(--neutral-3);
+    }
+    
+    .card ul {
+      list-style-type: none;
+      padding-left: 16px;
+    }
+    
+    .card li {
+      margin-bottom: 12px;
+      position: relative;
+    }
+    
+    .card li::before {
+      content: '';
+      position: absolute;
+      top: 9px;
+      left: -16px;
+      width: 6px;
+      height: 6px;
+      background-color: var(--primary-1);
+      border-radius: 50%;
+    }
+    
+    .chart-card {
+      flex: 1 1 45%;
+      min-height: 320px;
+      display: flex;
+      flex-direction: column;
+    }
+    
+    .chart-container {
+      flex-grow: 1;
+      position: relative;
+      margin-top: 16px;
+    }
+    
+    .progress-container {
+      margin-top: 16px;
+    }
+    
+    .progress-item {
+      margin-bottom: 16px;
+    }
+    
+    .progress-label {
+      display: flex;
+      justify-content: space-between;
+      margin-bottom: 8px;
+    }
+    
+    .progress-bar {
+      height: 10px;
+      background-color: var(--neutral-2);
+      border-radius: 5px;
+      overflow: hidden;
+    }
+    
+    .progress-fill {
+      height: 100%;
+      background-color: var(--primary-1);
+      border-radius: 5px;
+      transition: width 1s ease-in-out;
+    }
+    
+    .insight-bar {
+      background-color: #444444;
+      color: white;
+      padding: 16px;
+      border-radius: 10px;
+      margin: 30px 0;
+    }
+    
+    .quote {
+      background-color: rgba(123, 74, 255, 0.1);
+      border-left: 4px solid var(--primary-1);
+      padding: 16px 24px;
+      margin: 30px 0;
+      border-radius: 0 10px 10px 0;
+      font-style: italic;
+    }
+    
+    .solution-badge {
+      display: inline-block;
+      background-color: var(--primary-1);
+      color: white;
+      font-size: 14px;
+      padding: 4px 10px;
+      border-radius: 30px;
+      margin-bottom: 10px;
+    }
+    
+    .roadmap {
+      position: relative;
+      margin: 60px 0;
+    }
+    
+    .roadmap-line {
+      position: absolute;
+      top: 0;
+      bottom: 0;
+      left: 50%;
+      width: 4px;
+      background-color: var(--primary-1);
+      transform: translateX(-50%);
+    }
+    
+    .roadmap-item {
+      position: relative;
+      margin-bottom: 40px;
+      display: flex;
+      align-items: center;
+    }
+    
+    .roadmap-item:nth-child(odd) {
+      justify-content: flex-start;
+      padding-right: 50%;
+      padding-left: 0;
+    }
+    
+    .roadmap-item:nth-child(even) {
+      justify-content: flex-end;
+      padding-left: 50%;
+      padding-right: 0;
+    }
+    
+    .roadmap-item::after {
+      content: '';
+      position: absolute;
+      width: 20px;
+      height: 20px;
+      background-color: var(--primary-1);
+      border-radius: 50%;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      box-shadow: 0 0 0 4px rgba(123, 74, 255, 0.3);
+    }
+    
+    .roadmap-content {
+      background-color: white;
+      border-radius: 20px;
+      padding: 20px;
+      width: 80%;
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+    }
+    
+    .roadmap-item:nth-child(odd) .roadmap-content {
+      margin-right: 20px;
+    }
+    
+    .roadmap-item:nth-child(even) .roadmap-content {
+      margin-left: 20px;
+    }
+    
+    .footer {
+      text-align: center;
+      margin-top: 80px;
+      color: var(--neutral-3);
+      font-size: 14px;
+    }
+    
+    @media (max-width: 768px) {
+      .card-container {
+        flex-direction: column;
+      }
+      
+      .roadmap-item {
+        padding-right: 0 !important;
+        padding-left: 30px !important;
+        justify-content: flex-start !important;
+      }
+      
+      .roadmap-line {
+        left: 10px;
+      }
+      
+      .roadmap-item::after {
+        left: 10px;
+      }
+      
+      .roadmap-content {
+        width: 100%;
+        margin-right: 0 !important;
+        margin-left: 20px !important;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <header class="header">
+      <h1 class="page-title">2025 개발자 공부 전략 및 유망 분야</h1>
+      <div class="section-title">홍정모 교수의 최신 개발자 로드맵 분석</div>
+    </header>
+    
+    <section>
+      <h2 class="section-title">현재 개발자 시장 트렌드</h2>
+      <div class="card-container">
+        <div class="card chart-card">
+          <div class="card-title">AI 인력 수요 증가</div>
+          <div class="card-content">개발자 채용 공고의 44%가 AI 관련 직무를 포함하고 있으며, 연봉도 더 높은 추세입니다.</div>
+          <div class="chart-container">
+            <canvas id="aiJobsChart"></canvas>
+          </div>
+        </div>
+        
+        <div class="card chart-card">
+          <div class="card-title">유망 기술 성장률</div>
+          <div class="card-content">각 기술 분야별 성장률 예측입니다.</div>
+          <div class="progress-container">
+            <div class="progress-item">
+              <div class="progress-label">
+                <span>AI/ML</span>
+                <span>85%</span>
+              </div>
+              <div class="progress-bar">
+                <div class="progress-fill" style="width: 85%;"></div>
+              </div>
+            </div>
+            
+            <div class="progress-item">
+              <div class="progress-label">
+                <span>컴퓨터 그래픽스</span>
+                <span>65%</span>
+              </div>
+              <div class="progress-bar">
+                <div class="progress-fill" style="width: 65%;"></div>
+              </div>
+            </div>
+            
+            <div class="progress-item">
+              <div class="progress-label">
+                <span>웹 개발</span>
+                <span>50%</span>
+              </div>
+              <div class="progress-bar">
+                <div class="progress-fill" style="width: 50%;"></div>
+              </div>
+            </div>
+            
+            <div class="progress-item">
+              <div class="progress-label">
+                <span>모바일 앱</span>
+                <span>45%</span>
+              </div>
+              <div class="progress-bar">
+                <div class="progress-fill" style="width: 45%;"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <div class="insight-bar">
+        일자리는 돌아오지만, 절대로 똑같은 모습으로 돌아오지 않습니다. AI 기술은 모든 산업에 영향을 미치고 있습니다.
+      </div>
+    </section>
+    
+    <section>
+      <h2 class="section-title">핵심 메시지</h2>
+      <div class="card-container">
+        <div class="card">
+          <div class="card-title">AI 현황</div>
+          <div class="card-content">
+            <ul>
+              <li>AI 개발이 새로운 웹 개발이 되었음</li>
+              <li>개발자 채용 44%가 AI 관련, 연봉도 더 높음</li>
+              <li>AI 기술이 보편화되고 있음</li>
+              <li>바이브 코딩(Vibe Coding)이 새로운 트렌드</li>
+            </ul>
+          </div>
+        </div>
+        
+        <div class="card">
+          <div class="card-title">취업 시장</div>
+          <div class="card-content">
+            <ul>
+              <li>신입은 생태계의 필수 요소</li>
+              <li>일자리는 돌아오지만 같은 모습으로 돌아오지 않음</li>
+              <li>크래프턴 등의 게임 회사에서도 AI 인력 채용 중</li>
+              <li>양극화가 심해질 것</li>
+            </ul>
+          </div>
+        </div>
+        
+        <div class="card">
+          <div class="card-title">공부 전략</div>
+          <div class="card-content">
+            <ul>
+              <li>핵심을 배우고 모르는 것을 유도해내는 연습 필요</li>
+              <li>성장은 계단식으로 이루어짐</li>
+              <li>공부할 때 AI를 적절히 활용해야 함</li>
+              <li>파이썬과 C/C++ 모두 배우는 것이 좋음</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+      
+      <div class="quote">
+        "행운은 준비가 기회를 만났을 때 생겨난다."
+      </div>
+    </section>
+
+    <section>
+      <h2 class="section-title">성장 과정의 이해</h2>
+      <div class="card-container">
+        <div class="card">
+          <div class="card-title">계단식 성장 패턴</div>
+          <div class="card-content">
+            <p>성장은 선형적이 아닌 계단식으로 이루어집니다. 성장이 없는 것처럼 느껴지는 구간이 있어도 실제로는 미세하게 성장하고 있으며, 어느 순간 큰 점프가 일어납니다.</p>
+            <div style="margin-top: 15px; height: 80px;">
+              <svg width="100%" height="100%" viewBox="0 0 300 100" style="overflow: visible;">
+                <path d="M20,80 L20,80 L70,80 L70,60 L120,60 L120,60 L170,60 L170,40 L220,40 L220,20 L270,20" 
+                      stroke="#7B4AFF" stroke-width="3" fill="none"/>
+                <circle cx="20" cy="80" r="4" fill="#7B4AFF"/>
+                <circle cx="70" cy="80" r="4" fill="#7B4AFF"/>
+                <circle cx="70" cy="60" r="4" fill="#7B4AFF"/>
+                <circle cx="120" cy="60" r="4" fill="#7B4AFF"/>
+                <circle cx="170" cy="60" r="4" fill="#7B4AFF"/>
+                <circle cx="170" cy="40" r="4" fill="#7B4AFF"/>
+                <circle cx="220" cy="40" r="4" fill="#7B4AFF"/>
+                <circle cx="220" cy="20" r="4" fill="#7B4AFF"/>
+                <circle cx="270" cy="20" r="4" fill="#7B4AFF"/>
+              </svg>
+            </div>
+          </div>
+        </div>
+        
+        <div class="card">
+          <div class="card-title">무의식적 학습의 중요성</div>
+          <div class="card-content">
+            <ul>
+              <li>인간의 뇌는 '백그라운드 연산'을 합니다. 문제에 집중한 후 휴식을 취하면 무의식이 계속 해결책을 찾습니다.</li>
+              <li>초보 단계에서는 천천히, 깊이 생각하며 학습하는 것이 중요합니다.</li>
+              <li>끝까지 포기하지 않는 인내심이 가장 중요한 능력입니다.</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+    
+    <section>
+      <h2 class="section-title">AI 활용 전략</h2>
+      <div class="card-container">
+        <div class="card">
+          <div class="card-title">바이브 코딩(Vibe Coding)의 이해</div>
+          <div class="card-content">
+            <p>바이브 코딩은 AI가 코딩의 귀찮고 반복적인 부분을 도와주므로, 개발자는 창의적인 설계와 구조에 집중할 수 있다는 새로운 패러다임입니다.</p>
+            <p style="margin-top: 10px;">이 접근 방식은 AI를 도구로 활용하면서 개발자의 잠재력을 극대화하는 데 초점을 맞춥니다.</p>
+          </div>
+        </div>
+        
+        <div class="card">
+          <div class="card-title">AI 활용의 적절한 타이밍</div>
+          <div class="card-content">
+            <ul>
+              <li>기초 학습 단계에서는 AI에 의존하지 말고 직접 사고하는 연습이 필요합니다.</li>
+              <li>기본기가 갖춰진 후에는 AI를 적극 활용하여 생산성을 높이세요.</li>
+              <li>AI는 비주얼 스튜디오와 같은 도구입니다 - 문법을 모르면 도구를 잘 써도 프로그래밍을 잘할 수 없습니다.</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+    
+    <section>
+      <h2 class="section-title">2025 개발자 학습 로드맵</h2>
+      <div class="roadmap">
+        <div class="roadmap-line"></div>
+        
+        <div class="roadmap-item">
+          <div class="roadmap-content">
+            <span class="solution-badge">STEP 1</span>
+            <div class="card-title">프로그래밍 언어 습득</div>
+            <div class="card-content">
+              파이썬으로 시작하되, C/C++도 함께 배우는 것이 좋습니다. 하나의 언어에 국한되지 말고, 다양한 언어를 빠르게 배우는 능력을 키우세요.
+            </div>
+          </div>
+        </div>
+        
+        <div class="roadmap-item">
+          <div class="roadmap-content">
+            <span class="solution-badge">STEP 2</span>
+            <div class="card-title">자료구조 & 알고리즘</div>
+            <div class="card-content">
+              코딩 테스트 준비를 위해 필수적인 단계입니다. 핵심 개념을 이해하고 문제 해결 능력을 기르는 데 집중하세요.
+            </div>
+          </div>
+        </div>
+        
+        <div class="roadmap-item">
+          <div class="roadmap-content">
+            <span class="solution-badge">STEP 3</span>
+            <div class="card-title">AI 체험 & 수학 기초</div>
+            <div class="card-content">
+              AI 기술을 체험해보고, 필요한 수학 개념을 직관적으로 학습하세요. 파이썬을 활용한 수학 공부가 효과적입니다.
+              <p style="margin-top: 10px;"><strong>주의:</strong> 수학을 어려워하더라도 두려워하지 마세요. 프로그래밍에 필요한 수학은 학교에서 배웠던 것과 다르며, 시각화 도구와 직관적 접근이 가능합니다.</p>
+            </div>
+          </div>
+        </div>
+        
+        <div class="roadmap-item">
+          <div class="roadmap-content">
+            <span class="solution-badge">STEP 4</span>
+            <div class="card-title">딥러닝 기초</div>
+            <div class="card-content">
+              머신러닝 이론보다 먼저 딥러닝을 체험해보는 것도 좋은 방법입니다. 뉴럴 네트워크의 기본 원리를 이해하세요.
+              <p style="margin-top: 10px;">명문대에서도 머신러닝 이론보다 딥러닝 실습을 먼저 가르치는 추세로 변화하고 있습니다.</p>
+            </div>
+          </div>
+        </div>
+        
+        <div class="roadmap-item">
+          <div class="roadmap-content">
+            <span class="solution-badge">STEP 5</span>
+            <div class="card-title">응용분야 선택 & 포트폴리오</div>
+            <div class="card-content">
+              관심 있는 응용 분야를 선택하고 포트폴리오를 구축하세요. 다양한 분야를 체험해보고 결정해도 좋습니다.
+            </div>
+          </div>
+        </div>
+        
+        <div class="roadmap-item">
+          <div class="roadmap-content">
+            <span class="solution-badge">STEP 6</span>
+            <div class="card-title">CS 기초 & 인턴십</div>
+            <div class="card-content">
+              컴퓨터 과학 기초 지식을 쌓고, 가능하다면 인턴십 경험을 해보세요. 실무 경험은 취업에 큰 도움이 됩니다.
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    
+    <section>
+      <h2 class="section-title">취업 시장 현실</h2>
+      <div class="card-container">
+        <div class="card">
+          <div class="card-title">양극화 현상</div>
+          <div class="card-content">
+            <p>AI 시대에 개발자 시장은 양극화가 심해질 것입니다. AI를 효과적으로 활용하고 기본기가 탄탄한 개발자에게는 더 많은 기회가 주어질 것입니다.</p>
+            <p style="margin-top: 10px;">단순 암기식 지식보다는 문제 해결 능력과 응용력이 중요해집니다.</p>
+          </div>
+        </div>
+        
+        <div class="card">
+          <div class="card-title">신입 채용의 중요성</div>
+          <div class="card-content">
+            <p>모든 기업은 언젠가 신입을 채용해야 합니다. 신입이 없는 업계는 쇠퇴하기 마련입니다.</p>
+            <p style="margin-top: 10px;">"신입을 안 뽑는 것이 아니라 못 뽑는 것"이라는 현실을 인식하고, 차별화된 역량을 키우세요.</p>
+          </div>
+        </div>
+        
+        <div class="card">
+          <div class="card-title">기술적 특화 분야의 가치</div>
+          <div class="card-content">
+            <ul>
+              <li>그래픽스 분야 등 특화된 기술 분야는 여전히 취업에 유리합니다.</li>
+              <li>GPU 비용이 비싸지면서 최적화 능력을 갖춘 개발자의 가치가 상승했습니다.</li>
+              <li>모두가 할 수 있는 것보다 남들이 하기 어려운 기술을 습득하세요.</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+      
+      <div class="insight-bar">
+        소프트웨어 분야는 양으로 하는 분야가 아니라 요령으로 하는 분야입니다. 핵심을 알고 그 핵심으로부터 필요한 지식을 이끌어내는 능력이 중요합니다.
+      </div>
+    </section>
+    
+    <section>
+      <h2 class="section-title">유망 분야</h2>
+      <div class="card-container">
+        <div class="card">
+          <div class="card-title">LLM 기반 AI 에이전트</div>
+          <div class="card-content">
+            <span class="solution-badge">성장 분야</span>
+            <p>대규모 언어 모델을 활용한 AI 에이전트 개발이 다양한 산업에서 급성장하고 있습니다.</p>
+            <p style="margin-top: 10px;"><strong>필수 기술:</strong> 파인튜닝, 프롬프트 엔지니어링, 레그(RAG) 시스템 구축 능력</p>
+          </div>
+        </div>
+        
+        <div class="card">
+          <div class="card-title">컴퓨터 비전</div>
+          <div class="card-content">
+            <span class="solution-badge">성장 분야</span>
+            <p>AI와 결합된 컴퓨터 비전 기술은 여러 산업에서 활용되고 있습니다.</p>
+            <p style="margin-top: 10px;"><strong>필수 기술:</strong> 딥러닝 기반 이미지 처리, 3D 비전 기술, 최적화 능력</p>
+          </div>
+        </div>
+        
+        <div class="card">
+          <div class="card-title">컴퓨터 그래픽스</div>
+          <div class="card-content">
+            <span class="solution-badge">성장 분야</span>
+            <p>수학과 프로그래밍이 어떻게 적용되는지 공부하기 좋은 분야입니다.</p>
+            <p style="margin-top: 10px;"><strong>응용 분야:</strong> 게임, 영화 특수효과, 버추얼 캐릭터, 메타버스</p>
+            <p style="margin-top: 10px;">이 분야는 취업 시장에서 차별화된 경쟁력을 제공합니다.</p>
+          </div>
+        </div>
+        
+        <div class="card">
+          <div class="card-title">저수준 최적화 & GPU 프로그래밍</div>
+          <div class="card-content">
+            <span class="solution-badge">성장 분야</span>
+            <p>GPU 비용이 높아지면서 최적화 능력이 중요해졌습니다.</p>
+            <p style="margin-top: 10px;"><strong>필수 기술:</strong> CUDA, 벌칸, 메탈 등의 저수준 API 활용 능력</p>
+            <p style="margin-top: 10px;">AI 연구에서도 최적화 능력이 중요해지고 있습니다.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+    
+    <section>
+      <h2 class="section-title">심리적 접근법</h2>
+      <div class="card-container">
+        <div class="card">
+          <div class="card-title">인내심과 지속성</div>
+          <div class="card-content">
+            <p>성장이 느린 것 같더라도 포기하지 마세요. 초보 때는 느리게 배우는 것이 오히려 더 깊은 이해로 이어질 수 있습니다.</p>
+            <p style="margin-top: 10px;">한번 점프를 경험한 사람은 지루한 구간을 견딜 수 있습니다. 끝까지 하는 사람이 결국 승리합니다.</p>
+          </div>
+        </div>
+        
+        <div class="card">
+          <div class="card-title">응용 분야 선택의 유연성</div>
+          <div class="card-content">
+            <p>응용 분야는 "결혼"하듯 영원히 결정할 필요 없이 "연애"하듯 탐색하세요.</p>
+            <p style="margin-top: 10px;">처음에는 가볍게 여러 분야를 체험해보고, 관심이 생기면 더 깊이 파고들어 보세요.</p>
+            <p style="margin-top: 10px;">기회가 보이면 빠르게 적응하여 잡아내는 능력이 소프트웨어 분야의 핵심입니다.</p>
+          </div>
+        </div>
+      </div>
+      
+      <div class="quote">
+        "뭐 어떻게 보면 또 그거를 기회로 생각하실 수도 있을 것 같고... 어떤 시대에도 누구에게나 기회는 있습니다."
+      </div>
+    </section>
+    
+    <footer class="footer">
+      <p>출처: 홍정모 교수님 유튜브 강의 '2025 프로그래밍 공부 순서와 전략' | 그래픽 레코딩 스타일 인포그래픽</p>
+      <p style="margin-top: 8px;">영상 URL: <a href="https://youtu.be/0zL3EVl37Cs" style="color: var(--primary-1);">https://youtu.be/0zL3EVl37Cs</a></p>
+    </footer>
+  </div>
+  
+  <script>
+    // 도넛 차트 설정
+    const aiJobsCtx = document.getElementById('aiJobsChart').getContext('2d');
+    const aiJobsChart = new Chart(aiJobsCtx, {
+      type: 'doughnut',
+      data: {
+        labels: ['AI 관련 채용', '일반 개발 채용'],
+        datasets: [{
+          data: [44, 56],
+          backgroundColor: [
+            '#7B4AFF',
+            '#DDDDDD',
+          ],
+          borderWidth: 0,
+        }]
+      },
+      options: {
+        responsive: true,
+        maintainAspectRatio: false,
+        cutout: '70%',
+        plugins: {
+          legend: {
+            position: 'bottom',
+          }
+        }
+      }
+    });
+
+    // 애니메이션 효과
+    function animateOnScroll() {
+      const elements = document.querySelectorAll('.card, .roadmap-item');
+      
+      elements.forEach(element => {
+        const position = element.getBoundingClientRect();
+        
+        if (position.top < window.innerHeight) {
+          element.style.opacity = '1';
+          element.style.transform = element.classList.contains('roadmap-item') ? 
+            'translateY(0)' : 'translateY(0)';
+        }
+      });
+    }
+    
+    // 초기 스타일 설정
+    document.querySelectorAll('.card, .roadmap-item').forEach(element => {
+      element.style.opacity = '0';
+      element.style.transform = element.classList.contains('roadmap-item') ? 
+        'translateY(20px)' : 'translateY(20px)';
+      element.style.transition = 'opacity 0.5s ease, transform 0.5s ease';
+    });
+    
+    // 스크롤 이벤트 리스너
+    window.addEventListener('scroll', animateOnScroll);
+    window.addEventListener('load', animateOnScroll);
+  </script>
+</body>
+</html>

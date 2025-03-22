@@ -1,0 +1,558 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LLM의 이해: 그래픽 레코딩 스타일 인포그래픽</title>
+    <style>
+        @import url('https://cdn.jsdelivr.net/gh/orioncactus/pretendard/dist/web/static/pretendard.css');
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Pretendard', sans-serif;
+        }
+        
+        body {
+            background-color: #F5F5F7;
+            color: #1A1A1A;
+            line-height: 1.6;
+            padding: 40px 20px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .container {
+            display: flex;
+            flex-direction: column;
+            gap: 40px;
+        }
+        
+        .header {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        
+        .header h1 {
+            font-size: 32px;
+            font-weight: bold;
+            color: #1A1A1A;
+            margin-bottom: 10px;
+        }
+        
+        .header h2 {
+            font-size: 24px;
+            font-weight: bold;
+            color: #7B4AFF;
+        }
+        
+        .section {
+            margin-bottom: 40px;
+        }
+        
+        .section-title {
+            font-size: 24px;
+            font-weight: bold;
+            color: #7B4AFF;
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+        }
+        
+        .section-title::before {
+            content: "";
+            display: inline-block;
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background-color: #7B4AFF;
+            margin-right: 10px;
+        }
+        
+        .cards-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+            justify-content: center;
+        }
+        
+        .card {
+            background-color: white;
+            border-radius: 20px;
+            padding: 25px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+            flex: 1 1 300px;
+            max-width: 380px;
+            transition: transform 0.3s ease;
+        }
+        
+        .card:hover {
+            transform: translateY(-5px);
+        }
+        
+        .card-title {
+            font-size: 22px;
+            font-weight: bold;
+            color: #1A1A1A;
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+        }
+        
+        .card-title i {
+            color: #7B4AFF;
+            margin-right: 10px;
+            font-size: 24px;
+        }
+        
+        .card-content {
+            font-size: 16px;
+            color: #666666;
+        }
+        
+        .insight-bar {
+            background-color: #444444;
+            color: white;
+            padding: 15px 20px;
+            border-radius: 15px;
+            margin: 20px 0;
+            font-size: 16px;
+        }
+        
+        .quote {
+            border-left: 5px solid #7B4AFF;
+            background-color: rgba(123, 74, 255, 0.05);
+            padding: 15px 20px;
+            margin: 20px 0;
+            font-size: 16px;
+            color: #666666;
+            border-radius: 0 15px 15px 0;
+        }
+        
+        .solution-badge {
+            background-color: #7B4AFF;
+            color: white;
+            font-size: 14px;
+            padding: 4px 10px;
+            border-radius: 12px;
+            display: inline-block;
+            margin-bottom: 10px;
+        }
+        
+        .donut-chart-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin-top: 20px;
+        }
+        
+        .donut-chart {
+            width: 200px;
+            height: 200px;
+            position: relative;
+        }
+        
+        .progress-bar-container {
+            width: 100%;
+            background-color: #DDDDDD;
+            height: 12px;
+            border-radius: 6px;
+            margin: 15px 0;
+            overflow: hidden;
+        }
+        
+        .progress-bar {
+            height: 100%;
+            background-color: #7B4AFF;
+            border-radius: 6px;
+        }
+        
+        .stats {
+            display: flex;
+            justify-content: space-around;
+            margin-top: 20px;
+            text-align: center;
+        }
+        
+        .stat {
+            flex: 1;
+        }
+        
+        .stat-number {
+            font-size: 24px;
+            font-weight: bold;
+            color: #7B4AFF;
+        }
+        
+        .stat-label {
+            font-size: 14px;
+            color: #666666;
+        }
+        
+        .connector {
+            border-left: 2px dashed #7B4AFF;
+            height: 40px;
+            margin: 0 auto;
+            width: 1px;
+        }
+        
+        .llm-pipeline {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin: 40px 0;
+        }
+        
+        .pipeline-step {
+            background-color: white;
+            border-radius: 20px;
+            padding: 20px;
+            margin-bottom: 20px;
+            width: 100%;
+            max-width: 700px;
+            position: relative;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+        }
+        
+        .pipeline-step::after {
+            content: "";
+            position: absolute;
+            width: 2px;
+            height: 30px;
+            background-color: #7B4AFF;
+            bottom: -30px;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+        
+        .pipeline-step:last-child::after {
+            display: none;
+        }
+        
+        .step-number {
+            background-color: #7B4AFF;
+            color: white;
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            margin-right: 15px;
+        }
+        
+        .step-header {
+            display: flex;
+            align-items: center;
+            margin-bottom: 15px;
+        }
+        
+        .step-title {
+            font-size: 20px;
+            font-weight: bold;
+        }
+        
+        .step-content {
+            color: #666666;
+            padding-left: 45px;
+        }
+        
+        .footer {
+            text-align: center;
+            margin-top: 60px;
+            color: #666666;
+            font-size: 14px;
+        }
+        
+        @media (max-width: 768px) {
+            .cards-container {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            .card {
+                max-width: 100%;
+            }
+        }
+        
+        /* SVG styles for donut chart */
+        .donut-segment {
+            transition: all 0.3s ease;
+        }
+        
+        .donut-segment:hover {
+            transform: scale(1.05) translateX(5px);
+        }
+        
+        .donut-text {
+            font-size: 24px;
+            font-weight: bold;
+            fill: #1A1A1A;
+        }
+        
+        .donut-label {
+            font-size: 14px;
+            fill: #666666;
+        }
+    </style>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>대규모 언어 모델의 이해</h1>
+            <h2>그래픽 레코딩 스타일 가이드</h2>
+        </div>
+        
+        <div class="section">
+            <h3 class="section-title">LLM 파이프라인의 이해</h3>
+            
+            <div class="llm-pipeline">
+                <div class="pipeline-step">
+                    <div class="step-header">
+                        <div class="step-number">1</div>
+                        <div class="step-title">사전 학습 단계: 인터넷 데이터 수집</div>
+                    </div>
+                    <div class="step-content">
+                        <p>인터넷에서 대규모 텍스트 데이터를 다운로드하고 처리합니다. 약 44 테라바이트의 고품질 텍스트 데이터가 수집됩니다.</p>
+                        <div class="progress-bar-container">
+                            <div class="progress-bar" style="width: 100%;"></div>
+                        </div>
+                        <p>주요 필터링 단계:</p>
+                        <ul style="padding-left: 20px; margin-top: 10px;">
+                            <li>URL 필터링 (스팸, 악성 웹사이트 등 제거)</li>
+                            <li>텍스트 추출 (HTML 마크업 제거)</li>
+                            <li>언어 필터링 (예: 영어 65% 이상인 페이지만 유지)</li>
+                            <li>개인 식별 정보(PII) 제거</li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <div class="pipeline-step">
+                    <div class="step-header">
+                        <div class="step-number">2</div>
+                        <div class="step-title">토큰화 (Tokenization)</div>
+                    </div>
+                    <div class="step-content">
+                        <p>텍스트를 토큰이라는 작은 단위로 변환합니다. 토큰은 단어, 단어의 일부, 혹은 문자일 수 있습니다.</p>
+                        <div class="quote">
+                            GPT-4는 약 100,277개의 가능한 토큰을 사용합니다. 이는 각 토큰이 고유한 ID를 가진 언어의 기본 단위입니다.
+                        </div>
+                        <p>바이트 페어 인코딩(BPE) 알고리즘을 사용하여 효율적인 토큰 체계를 만듭니다. 이를 통해 텍스트의 시퀀스 길이를 줄이고 더 많은 심볼을 만들 수 있습니다.</p>
+                    </div>
+                </div>
+                
+                <div class="pipeline-step">
+                    <div class="step-header">
+                        <div class="step-number">3</div>
+                        <div class="step-title">신경망 훈련</div>
+                    </div>
+                    <div class="step-content">
+                        <p>토큰 시퀀스를 사용하여 다음 토큰을 예측하도록 신경망을 훈련시킵니다. 이 과정이 컴퓨팅 자원을 가장 많이 소모합니다.</p>
+                        <div class="insight-bar">
+                            <i class="fas fa-lightbulb"></i> 트랜스포머(Transformer) 신경망은 수십억 개의 매개변수(파라미터)를 가지고 있으며, 이 값들을 조정하여 토큰 패턴을 학습합니다.
+                        </div>
+                        <p>각 훈련 단계마다 신경망은 데이터셋의 통계적 패턴에 더 일관되게 맞도록 약간씩 조정됩니다. 손실(loss) 값이 감소할수록 모델의 예측이 개선됩니다.</p>
+                    </div>
+                </div>
+                
+                <div class="pipeline-step">
+                    <div class="step-header">
+                        <div class="step-number">4</div>
+                        <div class="step-title">추론 (Inference)</div>
+                    </div>
+                    <div class="step-content">
+                        <p>훈련된 모델을 사용하여 새로운 텍스트를 생성합니다. 이 과정은 확률적이며, 다양한 출력을 생성할 수 있습니다.</p>
+                        <p>단계별 과정:</p>
+                        <ol style="padding-left: 20px; margin-top: 10px;">
+                            <li>시작 토큰을 모델에 입력합니다.</li>
+                            <li>모델은 다음 토큰에 대한 확률 분포를 출력합니다.</li>
+                            <li>이 분포에서 토큰을 샘플링합니다.</li>
+                            <li>샘플링된 토큰을 시퀀스에 추가하고 과정을 반복합니다.</li>
+                        </ol>
+                    </div>
+                </div>
+                
+                <div class="pipeline-step">
+                    <div class="step-header">
+                        <div class="step-number">5</div>
+                        <div class="step-title">사후 훈련 (Post-Training)</div>
+                    </div>
+                    <div class="step-content">
+                        <p>사전 훈련된 모델을 대화 데이터셋으로 미세 조정하여 유용한 AI 어시스턴트로 만듭니다.</p>
+                        <div class="quote">
+                            사후 훈련은 사전 훈련에 비해 훨씬 적은 컴퓨팅 자원을 사용합니다. 사전 훈련이 몇 달 걸리는 반면, 사후 훈련은 단 몇 시간만 소요될 수 있습니다.
+                        </div>
+                        <p>대화 데이터셋은 인간 라벨러가 작성하거나, 다른 언어 모델의 도움을 받아 생성됩니다. 이 과정을 통해 모델은 인간과의 대화 방법을 학습합니다.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="section">
+            <h3 class="section-title">LLM의 구성 요소</h3>
+            
+            <div class="cards-container">
+                <div class="card">
+                    <div class="solution-badge">핵심 구성요소</div>
+                    <h4 class="card-title"><i class="fas fa-cogs"></i>트랜스포머 아키텍처</h4>
+                    <div class="card-content">
+                        <p>현대 LLM의 기본 구조는 트랜스포머 아키텍처입니다. 이 구조는 자기 주의(self-attention) 메커니즘을 사용하여 텍스트 내 단어 간의 관계를 파악합니다.</p>
+                        <div class="stats">
+                            <div class="stat">
+                                <div class="stat-number">1.5B</div>
+                                <div class="stat-label">GPT-2 매개변수</div>
+                            </div>
+                            <div class="stat">
+                                <div class="stat-number">175B</div>
+                                <div class="stat-label">GPT-3 매개변수</div>
+                            </div>
+                            <div class="stat">
+                                <div class="stat-number">1.7T</div>
+                                <div class="stat-label">GPT-4 추정 매개변수</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="card">
+                    <div class="solution-badge">데이터 처리</div>
+                    <h4 class="card-title"><i class="fas fa-database"></i>토큰화 시스템</h4>
+                    <div class="card-content">
+                        <p>토큰화는 텍스트를 모델이 처리할 수 있는 단위로 변환하는 과정입니다. GPT-4는 약 100,277개의 토큰을 사용합니다.</p>
+                        <div class="donut-chart-container">
+                            <svg class="donut-chart" viewBox="0 0 200 200">
+                                <g transform="translate(100, 100)">
+                                    <!-- Background circle -->
+                                    <circle r="80" fill="#DDDDDD" />
+                                    
+                                    <!-- Segments -->
+                                    <path class="donut-segment" d="M 0 -80 A 80 80 0 0 1 80 0 L 0 0 Z" fill="#7B4AFF" />
+                                    <path class="donut-segment" d="M 80 0 A 80 80 0 1 1 0 -80 L 0 0 Z" fill="#DDDDDD" />
+                                    
+                                    <!-- Center text -->
+                                    <text class="donut-text" text-anchor="middle" dy="8">25%</text>
+                                    <text class="donut-label" text-anchor="middle" dy="30">데이터 압축률</text>
+                                </g>
+                            </svg>
+                            <p style="margin-top: 10px; text-align: center; color: #666666;">
+                                바이트 페어 인코딩(BPE)은 데이터를 효율적으로 압축하여 모델 처리 속도를 향상시킵니다.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="card">
+                    <div class="solution-badge">컴퓨팅 인프라</div>
+                    <h4 class="card-title"><i class="fas fa-microchip"></i>GPU 클러스터</h4>
+                    <div class="card-content">
+                        <p>현대 LLM 훈련에는 대규모 GPU 클러스터가 필요합니다. NVIDIA의 H100 GPU가 많이 사용됩니다.</p>
+                        <div class="progress-bar-container">
+                            <div class="progress-bar" style="width: 85%;"></div>
+                        </div>
+                        <p style="text-align: right; font-size: 14px; color: #666666;">전력 사용량: 85%</p>
+                        <div class="insight-bar">
+                            <i class="fas fa-bolt"></i> 대규모 모델 훈련에는 수천 개의 GPU와 수백만 달러의 비용이 필요합니다.
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="section">
+            <h3 class="section-title">LLM 특성과 한계</h3>
+            
+            <div class="cards-container">
+                <div class="card">
+                    <div class="solution-badge">LLM 특성</div>
+                    <h4 class="card-title"><i class="fas fa-brain"></i>인 컨텍스트 학습</h4>
+                    <div class="card-content">
+                        <p>LLM은 컨텍스트 내에서 즉시 학습할 수 있는 능력을 가지고 있습니다. 몇 가지 예시를 제공하면, 모델은 패턴을 인식하고 유사한 작업을 수행할 수 있습니다.</p>
+                        <div class="quote">
+                            LLM은 프롬프트 내의 예시를 통해 새로운 작업이나 형식을 학습할 수 있습니다. 이를 "few-shot learning"이라고 합니다.
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="card">
+                    <div class="solution-badge">주요 한계</div>
+                    <h4 class="card-title"><i class="fas fa-exclamation-triangle"></i>환각 현상</h4>
+                    <div class="card-content">
+                        <p>LLM은 잘 모르는 주제에 대해 자신 있게 거짓 정보를 생성하는 경향이 있습니다. 이를 '환각(hallucination)'이라고 합니다.</p>
+                        <p>환각 완화 방법:</p>
+                        <ul style="padding-left: 20px; margin-top: 10px;">
+                            <li>모델이 모르는 것을 인정하도록 학습시키기</li>
+                            <li>웹 검색과 같은 외부 도구 통합하기</li>
+                            <li>확률적 샘플링 조정하기</li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <div class="card">
+                    <div class="solution-badge">도구 사용</div>
+                    <h4 class="card-title"><i class="fas fa-tools"></i>외부 도구 통합</h4>
+                    <div class="card-content">
+                        <p>최신 LLM은 웹 검색, 코드 실행, 계산 등의 외부 도구를 사용할 수 있습니다. 이를 통해 사실적인 정보를 제공하고 복잡한 작업을 수행할 수 있습니다.</p>
+                        <div class="insight-bar">
+                            <i class="fas fa-lightbulb"></i> 도구 사용은 특별한 토큰을 통해 구현되며, 모델은 적절한 시점에 도구를 호출하도록 학습됩니다.
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="section">
+            <h3 class="section-title">LLM 발전 과정</h3>
+            
+            <div class="cards-container">
+                <div class="card">
+                    <div class="solution-badge">2019</div>
+                    <h4 class="card-title"><i class="fas fa-history"></i>GPT-2</h4>
+                    <div class="card-content">
+                        <p>OpenAI가 개발한 GPT-2는 현대적 LLM의 시작점으로 볼 수 있습니다.</p>
+                        <ul style="padding-left: 20px; margin-top: 10px;">
+                            <li>1.5B 매개변수</li>
+                            <li>1,024 토큰 최대 컨텍스트 길이</li>
+                            <li>1,000억 토큰으로 훈련</li>
+                            <li>당시 훈련 비용: 약 $40,000</li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <div class="card">
+                    <div class="solution-badge">2022</div>
+                    <h4 class="card-title"><i class="fas fa-rocket"></i>InstructGPT</h4>
+                    <div class="card-content">
+                        <p>OpenAI가 개발한 InstructGPT는 사람의 지시에 따르도록 미세 조정된 첫 번째 주요 모델입니다.</p>
+                        <div class="quote">
+                            InstructGPT는 인간 라벨러를 활용하여 대화 데이터셋을 구축했습니다. 이는 모델이 유용하고, 진실되며, 안전한 답변을 제공하도록 했습니다.
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="card">
+                    <div class="solution-badge">현재</div>
+                    <h4 class="card-title"><i class="fas fa-chart-line"></i>최신 LLM</h4>
+                    <div class="card-content">
+                        <p>최신 모델은 수조 개의 매개변수를 가지며, 수백만 개의 대화로 미세 조정됩니다.</p>
+                        <p>주요 특징:</p>
+                        <ul style="padding-left: 20px; margin-top: 10px;">
+                            <li>더 긴 컨텍스트 길이 (백만 토큰 이상)</li>
+                            <li>외부 도구 통합</li>
+                            <li>합성 데이터와 인간 피드백의 조합으로 훈련</li>
+                            <li>더 나은 추론 능력과 사실 정확성</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="footer">
+            <p>이 인포그래픽은 Andrej Karpathy의 "Large Language Models Explained" 비디오를 기반으로 제작되었습니다.</p>
+            <p>© 2025 LLM 그래픽 레코딩 인포그래픽</p>
+        </div>
+    </div>
+</body>
+</html>
