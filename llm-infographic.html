@@ -3,67 +3,80 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>LLM의 이해: 그래픽 레코딩 스타일 인포그래픽</title>
+    <title>대형 언어 모델(LLM) 구축 프로세스 인포그래픽</title>
+    <link href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard/dist/web/static/pretendard.css" rel="stylesheet">
     <style>
-        @import url('https://cdn.jsdelivr.net/gh/orioncactus/pretendard/dist/web/static/pretendard.css');
+        :root {
+            --primary: #7B4AFF;
+            --neutral-1: #F5F5F7;
+            --neutral-2: #DDDDDD;
+            --neutral-3: #666666;
+            --neutral-4: #1A1A1A;
+            --border-radius: 20px;
+            --spacing-sm: 12px;
+            --spacing-md: 24px;
+            --spacing-lg: 36px;
+            --shadow: 0 10px 20px rgba(0, 0, 0, 0.05);
+        }
         
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
-            font-family: 'Pretendard', sans-serif;
         }
         
         body {
-            background-color: #F5F5F7;
-            color: #1A1A1A;
+            font-family: 'Pretendard', sans-serif;
+            background-color: var(--neutral-1);
+            color: var(--neutral-3);
             line-height: 1.6;
-            padding: 40px 20px;
-            max-width: 1200px;
-            margin: 0 auto;
+            font-size: 16px;
+            padding: var(--spacing-md);
         }
         
         .container {
-            display: flex;
-            flex-direction: column;
-            gap: 40px;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: var(--spacing-md) 0;
         }
         
-        .header {
+        header {
             text-align: center;
-            margin-bottom: 20px;
+            margin-bottom: var(--spacing-lg);
         }
         
-        .header h1 {
+        .title {
             font-size: 32px;
             font-weight: bold;
-            color: #1A1A1A;
-            margin-bottom: 10px;
+            color: var(--neutral-4);
+            margin-bottom: var(--spacing-sm);
         }
         
-        .header h2 {
+        .subtitle {
             font-size: 24px;
             font-weight: bold;
-            color: #7B4AFF;
+            color: var(--primary);
+            margin-bottom: var(--spacing-md);
         }
         
-        .section {
-            margin-bottom: 40px;
+        .intro {
+            background-color: white;
+            border-radius: var(--border-radius);
+            padding: var(--spacing-md);
+            box-shadow: var(--shadow);
+            margin-bottom: var(--spacing-lg);
         }
         
-        .highlight-box {
-            background-color: rgba(123, 74, 255, 0.1);
-            border: 1px solid #7B4AFF;
-            border-radius: 20px;
-            padding: 20px;
-            margin: 20px 0;
+        .intro-text {
+            max-width: 800px;
+            margin: 0 auto;
         }
         
         .section-title {
             font-size: 24px;
             font-weight: bold;
-            color: #7B4AFF;
-            margin-bottom: 20px;
+            color: var(--primary);
+            margin-bottom: var(--spacing-md);
             display: flex;
             align-items: center;
         }
@@ -73,643 +86,1101 @@
             display: inline-block;
             width: 8px;
             height: 8px;
+            background-color: var(--primary);
             border-radius: 50%;
-            background-color: #7B4AFF;
             margin-right: 10px;
         }
         
-        .cards-container {
+        .card-container {
             display: flex;
             flex-wrap: wrap;
-            gap: 20px;
-            justify-content: center;
+            gap: var(--spacing-md);
+            margin-bottom: var(--spacing-lg);
         }
         
         .card {
             background-color: white;
-            border-radius: 20px;
-            padding: 25px;
-            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
-            flex: 1 1 300px;
-            max-width: 380px;
-            transition: transform 0.3s ease;
-        }
-        
-        .card:hover {
-            transform: translateY(-5px);
+            border-radius: var(--border-radius);
+            padding: var(--spacing-md);
+            box-shadow: var(--shadow);
+            flex: 1;
+            min-width: 300px;
         }
         
         .card-title {
             font-size: 22px;
             font-weight: bold;
-            color: #1A1A1A;
-            margin-bottom: 15px;
+            color: var(--neutral-4);
+            margin-bottom: var(--spacing-sm);
             display: flex;
             align-items: center;
         }
         
-        .card-title i {
-            color: #7B4AFF;
+        .card-title .number {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: 30px;
+            height: 30px;
+            background-color: var(--primary);
+            color: white;
+            border-radius: 50%;
             margin-right: 10px;
-            font-size: 24px;
+            font-size: 16px;
         }
         
         .card-content {
-            font-size: 16px;
-            color: #666666;
-        }
-        
-        .insight-bar {
-            background-color: #444444;
-            color: white;
-            padding: 15px 20px;
-            border-radius: 15px;
-            margin: 20px 0;
-            font-size: 16px;
+            margin-top: var(--spacing-sm);
         }
         
         .quote {
-            border-left: 5px solid #7B4AFF;
             background-color: rgba(123, 74, 255, 0.05);
-            padding: 15px 20px;
-            margin: 20px 0;
-            font-size: 16px;
-            color: #666666;
-            border-radius: 0 15px 15px 0;
+            border-left: 4px solid var(--primary);
+            padding: var(--spacing-md);
+            margin: var(--spacing-md) 0;
+            border-radius: 0 var(--border-radius) var(--border-radius) 0;
         }
         
-        .solution-badge {
-            background-color: #7B4AFF;
-            color: white;
-            font-size: 14px;
-            padding: 4px 10px;
-            border-radius: 12px;
+        .badge {
             display: inline-block;
-            margin-bottom: 10px;
+            background-color: var(--primary);
+            color: white;
+            padding: 4px 8px;
+            border-radius: 12px;
+            font-size: 14px;
+            margin-bottom: var(--spacing-sm);
         }
         
-        .donut-chart-container {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            margin-top: 20px;
+        .insight {
+            background-color: #444444;
+            color: white;
+            padding: var(--spacing-md);
+            border-radius: var(--border-radius);
+            margin: var(--spacing-md) 0;
+        }
+        
+        .chart-container {
+            padding: var(--spacing-md) 0;
         }
         
         .donut-chart {
-            width: 200px;
-            height: 200px;
+            width: 180px;
+            height: 180px;
+            margin: 0 auto;
             position: relative;
         }
         
-        .progress-bar-container {
+        .donut-chart svg {
             width: 100%;
-            background-color: #DDDDDD;
-            height: 12px;
-            border-radius: 6px;
-            margin: 15px 0;
-            overflow: hidden;
-        }
-        
-        .progress-bar {
             height: 100%;
-            background-color: #7B4AFF;
-            border-radius: 6px;
         }
         
-        .stats {
-            display: flex;
-            justify-content: space-around;
-            margin-top: 20px;
+        .donut-chart .center {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
             text-align: center;
         }
         
-        .stat {
+        .donut-chart .value {
+            font-size: 24px;
+            font-weight: bold;
+            color: var(--neutral-4);
+        }
+        
+        .donut-chart .label {
+            font-size: 14px;
+            color: var(--neutral-3);
+        }
+        
+        .progress-container {
+            margin: var(--spacing-md) 0;
+        }
+        
+        .progress-label {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 8px;
+        }
+        
+        .progress-bar {
+            height: 10px;
+            background-color: var(--neutral-2);
+            border-radius: 5px;
+            overflow: hidden;
+        }
+        
+        .progress-value {
+            height: 100%;
+            background-color: var(--primary);
+            border-radius: 5px;
+        }
+        
+        .two-column {
+            display: flex;
+            gap: var(--spacing-md);
+            margin-bottom: var(--spacing-md);
+        }
+        
+        .two-column > div {
             flex: 1;
         }
         
-        .stat-number {
-            font-size: 24px;
-            font-weight: bold;
-            color: #7B4AFF;
-        }
-        
-        .stat-label {
-            font-size: 14px;
-            color: #666666;
-        }
-        
-        .connector {
-            border-left: 2px dashed #7B4AFF;
-            height: 40px;
-            margin: 0 auto;
-            width: 1px;
-        }
-        
-        .llm-pipeline {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            margin: 40px 0;
-        }
-        
-        .pipeline-step {
-            background-color: white;
-            border-radius: 20px;
-            padding: 20px;
-            margin-bottom: 20px;
-            width: 100%;
-            max-width: 700px;
+        .process-flow {
+            margin: var(--spacing-lg) 0;
             position: relative;
-            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
         }
         
-        .pipeline-step::after {
+        .process-step {
+            display: flex;
+            margin-bottom: var(--spacing-md);
+            position: relative;
+        }
+        
+        .process-step:not(:last-child)::after {
             content: "";
             position: absolute;
+            top: 40px;
+            left: 15px;
             width: 2px;
-            height: 30px;
-            background-color: #7B4AFF;
-            bottom: -30px;
-            left: 50%;
-            transform: translateX(-50%);
-        }
-        
-        .pipeline-step:last-child::after {
-            display: none;
+            height: calc(100% - 30px);
+            background-color: var(--primary);
         }
         
         .step-number {
-            background-color: #7B4AFF;
-            color: white;
+            display: flex;
+            justify-content: center;
+            align-items: center;
             width: 30px;
             height: 30px;
+            background-color: var(--primary);
+            color: white;
             border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-weight: bold;
             margin-right: 15px;
+            font-size: 16px;
+            font-weight: bold;
+            z-index: 1;
         }
         
-        .step-header {
-            display: flex;
-            align-items: center;
-            margin-bottom: 15px;
+        .step-content {
+            flex: 1;
         }
         
         .step-title {
             font-size: 20px;
             font-weight: bold;
+            color: var(--neutral-4);
+            margin-bottom: 8px;
         }
         
-        .step-content {
-            color: #666666;
-            padding-left: 45px;
+        .code-block {
+            background-color: #f7f7f7;
+            border-radius: 10px;
+            padding: var(--spacing-md);
+            margin: var(--spacing-sm) 0;
+            overflow-x: auto;
+            font-family: monospace;
+            font-size: 14px;
         }
         
-        .footer {
+        .illustration {
+            display: flex;
+            justify-content: center;
+            margin: var(--spacing-md) 0;
+        }
+        
+        .attention-matrix {
+            display: grid;
+            grid-template-columns: repeat(7, 1fr);
+            gap: 2px;
+            margin: var(--spacing-md) auto;
+            max-width: 300px;
+        }
+        
+        .attention-cell {
+            width: 100%;
+            aspect-ratio: 1;
+            background-color: var(--neutral-2);
+            border-radius: 4px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 14px;
+            color: var(--neutral-4);
+        }
+        
+        .attention-cell.active {
+            background-color: var(--primary);
+            color: white;
+        }
+        
+        .attention-cell.masked {
+            background-color: #f0f0f0;
+            position: relative;
+        }
+        
+        .attention-cell.masked::after {
+            content: "X";
+            position: absolute;
+            color: #999;
+            font-weight: bold;
+        }
+        
+        .comparison-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: var(--spacing-md) 0;
+        }
+        
+        .comparison-table th,
+        .comparison-table td {
+            padding: 10px;
+            text-align: left;
+            border-bottom: 1px solid var(--neutral-2);
+        }
+        
+        .comparison-table th {
+            font-weight: bold;
+            color: var(--neutral-4);
+            background-color: var(--neutral-1);
+        }
+        
+        .comparison-table tr:last-child td {
+            border-bottom: none;
+        }
+        
+        .resource-card {
+            border-left: 4px solid var(--primary);
+            padding-left: var(--spacing-md);
+            margin: var(--spacing-sm) 0;
+        }
+        
+        footer {
             text-align: center;
-            margin-top: 60px;
-            color: #666666;
+            margin-top: var(--spacing-lg);
+            padding-top: var(--spacing-md);
+            border-top: 1px solid var(--neutral-2);
+            color: var(--neutral-3);
             font-size: 14px;
         }
         
         @media (max-width: 768px) {
-            .cards-container {
+            .two-column {
                 flex-direction: column;
-                align-items: center;
             }
             
-            .card {
-                max-width: 100%;
+            .card-container {
+                flex-direction: column;
             }
         }
-        
-        /* SVG styles for donut chart */
-        .donut-segment {
-            transition: all 0.3s ease;
-        }
-        
-        .donut-segment:hover {
-            transform: scale(1.05) translateX(5px);
-        }
-        
-        .donut-text {
-            font-size: 24px;
-            font-weight: bold;
-            fill: #1A1A1A;
-        }
-        
-        .donut-label {
-            font-size: 14px;
-            fill: #666666;
-        }
     </style>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
 <body>
     <div class="container">
-        <div class="header">
-            <h1>대규모 언어 모델의 이해</h1>
-            <h2>그래픽 레코딩 스타일 가이드</h2>
-        </div>
+        <header>
+            <h1 class="title">대형 언어 모델(LLM) 바닥부터 만들기</h1>
+            <h2 class="subtitle">기본 원리부터 구현까지의 완벽 가이드</h2>
+        </header>
         
-        <div class="section">
-            <h3 class="section-title">LLM 파이프라인의 이해</h3>
-            
-            <div class="llm-pipeline">
-                <div class="pipeline-step">
-                    <div class="step-header">
-                        <div class="step-number">1</div>
-                        <div class="step-title">사전 학습 단계: 인터넷 데이터 수집</div>
-                    </div>
-                    <div class="step-content">
-                        <p>인터넷에서 대규모 텍스트 데이터를 다운로드하고 처리합니다. 약 44 테라바이트의 고품질 텍스트 데이터가 수집됩니다.</p>
-                        <div class="progress-bar-container">
-                            <div class="progress-bar" style="width: 100%;"></div>
-                        </div>
-                        <p>주요 필터링 단계:</p>
-                        <ul style="padding-left: 20px; margin-top: 10px;">
-                            <li>URL 필터링 (스팸, 악성 웹사이트 등 제거)</li>
-                            <li>텍스트 추출 (HTML 마크업 제거)</li>
-                            <li>언어 필터링 (예: 영어 65% 이상인 페이지만 유지)</li>
-                            <li>개인 식별 정보(PII) 제거</li>
-                        </ul>
-                    </div>
-                </div>
-                
-                <div class="pipeline-step">
-                    <div class="step-header">
-                        <div class="step-number">2</div>
-                        <div class="step-title">토큰화 (Tokenization)</div>
-                    </div>
-                    <div class="step-content">
-                        <p>텍스트를 토큰이라는 작은 단위로 변환합니다. 토큰은 단어, 단어의 일부, 혹은 문자일 수 있습니다.</p>
-                        <div class="quote">
-                            GPT-4는 약 100,277개의 가능한 토큰을 사용합니다. 이는 각 토큰이 고유한 ID를 가진 언어의 기본 단위입니다.
-                        </div>
-                        <p>바이트 페어 인코딩(BPE) 알고리즘을 사용하여 효율적인 토큰 체계를 만듭니다. 이를 통해 텍스트의 시퀀스 길이를 줄이고 더 많은 심볼을 만들 수 있습니다.</p>
-                    </div>
-                </div>
-                
-                <div class="pipeline-step">
-                    <div class="step-header">
-                        <div class="step-number">3</div>
-                        <div class="step-title">신경망 훈련</div>
-                    </div>
-                    <div class="step-content">
-                        <p>토큰 시퀀스를 사용하여 다음 토큰을 예측하도록 신경망을 훈련시킵니다. 이 과정이 컴퓨팅 자원을 가장 많이 소모합니다.</p>
-                        <div class="insight-bar">
-                            <i class="fas fa-lightbulb"></i> 트랜스포머(Transformer) 신경망은 수십억 개의 매개변수(파라미터)를 가지고 있으며, 이 값들을 조정하여 토큰 패턴을 학습합니다.
-                        </div>
-                        <p>각 훈련 단계마다 신경망은 데이터셋의 통계적 패턴에 더 일관되게 맞도록 약간씩 조정됩니다. 손실(loss) 값이 감소할수록 모델의 예측이 개선됩니다.</p>
-                    </div>
-                </div>
-                
-                <div class="pipeline-step">
-                    <div class="step-header">
-                        <div class="step-number">4</div>
-                        <div class="step-title">추론 (Inference)</div>
-                    </div>
-                    <div class="step-content">
-                        <p>훈련된 모델을 사용하여 새로운 텍스트를 생성합니다. 이 과정은 확률적이며, 다양한 출력을 생성할 수 있습니다.</p>
-                        <p>단계별 과정:</p>
-                        <ol style="padding-left: 20px; margin-top: 10px;">
-                            <li>시작 토큰을 모델에 입력합니다.</li>
-                            <li>모델은 다음 토큰에 대한 확률 분포를 출력합니다.</li>
-                            <li>이 분포에서 토큰을 샘플링합니다.</li>
-                            <li>샘플링된 토큰을 시퀀스에 추가하고 과정을 반복합니다.</li>
-                        </ol>
-                    </div>
-                </div>
-                
-                <div class="pipeline-step">
-                    <div class="step-header">
-                        <div class="step-number">5</div>
-                        <div class="step-title">사후 훈련 (Post-Training)</div>
-                    </div>
-                    <div class="step-content">
-                        <p>사전 훈련된 모델을 대화 데이터셋으로 미세 조정하여 유용한 AI 어시스턴트로 만듭니다.</p>
-                        <div class="quote">
-                            사후 훈련은 사전 훈련에 비해 훨씬 적은 컴퓨팅 자원을 사용합니다. 사전 훈련이 몇 달 걸리는 반면, 사후 훈련은 단 몇 시간만 소요될 수 있습니다.
-                        </div>
-                        <p>대화 데이터셋은 인간 라벨러가 작성하거나, 다른 언어 모델의 도움을 받아 생성됩니다. 이 과정을 통해 모델은 인간과의 대화 방법을 학습합니다.</p>
-                    </div>
-                </div>
+        <div class="intro">
+            <div class="intro-text">
+                <p>대형 언어 모델(LLM)은 최근 AI 분야에서 가장 주목받는 기술 중 하나로, ChatGPT와 같은 서비스의 기반이 되고 있습니다. 이 인포그래픽에서는 LLM을 바닥부터 구축하는 과정을 단계별로 설명하여, 복잡해 보이는 이 기술의 핵심 원리를 이해할 수 있도록 도와드립니다.</p>
             </div>
         </div>
         
-        <div class="section">
-            <h3 class="section-title">LLM의 구성 요소</h3>
+        <section>
+            <h2 class="section-title">LLM의 의미와 중요성</h2>
             
-            <div class="cards-container">
+            <div class="card-container">
                 <div class="card">
-                    <div class="solution-badge">핵심 구성요소</div>
-                    <h4 class="card-title"><i class="fas fa-cogs"></i>트랜스포머 아키텍처</h4>
+                    <div class="badge">트렌드</div>
+                    <h3 class="card-title">LLM 기술의 대중화</h3>
                     <div class="card-content">
-                        <p>현대 LLM의 기본 구조는 트랜스포머 아키텍처입니다. 이 구조는 자기 주의(self-attention) 메커니즘을 사용하여 텍스트 내 단어 간의 관계를 파악합니다.</p>
-                        <div class="stats">
-                            <div class="stat">
-                                <div class="stat-number">1.5B</div>
-                                <div class="stat-label">GPT-2 매개변수</div>
-                            </div>
-                            <div class="stat">
-                                <div class="stat-number">175B</div>
-                                <div class="stat-label">GPT-3 매개변수</div>
-                            </div>
-                            <div class="stat">
-                                <div class="stat-number">1.7T</div>
-                                <div class="stat-label">GPT-4 추정 매개변수</div>
-                            </div>
-                        </div>
+                        <p>이제 LLM을 만드는 기술은 특별한 기술이 아닌 보편적인 기술로 자리잡고 있습니다. 2년 전부터 유튜브와 교육 자료에서 쉽게 접할 수 있으며, 이제는 대학교 수업에서도 가르치고 있습니다.</p>
                         <div class="quote">
-                            트랜스포머는 단순한 수학적 표현식이지만, 매우 강력한 패턴 인식 능력을 가지고 있습니다. 이 네트워크는 입력 토큰에서 출력 확률까지 정보가 흐르는 계층적 구조로 되어 있습니다.
+                            "LLM 만드는 기술은 더 이상 특별한 기술이 아니다. 대학교 수업 시간에서 간단하게 가르치고 실습하는 보편적인 기술로 자리를 잡게 될 것이다."
                         </div>
                     </div>
                 </div>
                 
                 <div class="card">
-                    <div class="solution-badge">데이터 처리</div>
-                    <h4 class="card-title"><i class="fas fa-database"></i>토큰화 시스템</h4>
+                    <div class="badge">발전 동향</div>
+                    <h3 class="card-title">오픈소스의 영향력</h3>
                     <div class="card-content">
-                        <p>토큰화는 텍스트를 모델이 처리할 수 있는 단위로 변환하는 과정입니다. GPT-4는 약 100,277개의 토큰을 사용합니다.</p>
-                        <div class="donut-chart-container">
-                            <svg class="donut-chart" viewBox="0 0 200 200">
-                                <g transform="translate(100, 100)">
-                                    <!-- Background circle -->
-                                    <circle r="80" fill="#DDDDDD" />
-                                    
-                                    <!-- Segments -->
-                                    <path class="donut-segment" d="M 0 -80 A 80 80 0 0 1 80 0 L 0 0 Z" fill="#7B4AFF" />
-                                    <path class="donut-segment" d="M 80 0 A 80 80 0 1 1 0 -80 L 0 0 Z" fill="#DDDDDD" />
-                                    
-                                    <!-- Center text -->
-                                    <text class="donut-text" text-anchor="middle" dy="8">25%</text>
-                                    <text class="donut-label" text-anchor="middle" dy="30">데이터 압축률</text>
-                                </g>
-                            </svg>
-                            <p style="margin-top: 10px; text-align: center; color: #666666;">
-                                바이트 페어 인코딩(BPE)은 데이터를 효율적으로 압축하여 모델 처리 속도를 향상시킵니다.
+                        <p>최근 오픈소스 LLM의 발전으로 고품질 모델에 대한 접근성이 크게 향상되었습니다. 특히 한국어를 잘하는 무료 모델들이 등장하면서, API 사용료에 대한 부담 없이 개발과 테스트가 가능해졌습니다.</p>
+                        <div class="quote">
+                            "알고 보니까 즈에서 딥시크 랑 만먹는 수준의 lml 공개를 해 줬어요. 저도 사용을 해봤는데 한국어 꽤 잘합니다. 한국어 꽤 잘하고 무엇보다 무료로 사용할 수 있게 공개를 해 주셨기 때문에 비용에 대한 부담 없이 이것저것 테스트를 해 보기도 굉장히 좋고..."
+                        </div>
+                        <div class="chart-container">
+                            <div class="donut-chart">
+                                <svg viewBox="0 0 36 36">
+                                    <path d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831" fill="none" stroke="#DDDDDD" stroke-width="3" />
+                                    <path d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831" fill="none" stroke="#7B4AFF" stroke-width="3" stroke-dasharray="75, 100" stroke-dashoffset="25" />
+                                </svg>
+                                <div class="center">
+                                    <div class="value">75%</div>
+                                    <div class="label">API 비용 절감</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="card">
+                    <div class="badge">학습 자료</div>
+                    <h3 class="card-title">교육 자원의 증가</h3>
+                    <div class="card-content">
+                        <p>2023년 9월 "바닥부터 LLM 만들기"라는 책이 출간되었으며, 다양한 유튜브 채널과 블로그에서 LLM 구축 방법을 다루고 있습니다. 앤드류 카파시의 유튜브 채널과 코스는 특히 유명합니다.</p>
+                        <div class="quote">
+                            "작년 가을 그러니까 2024년 셉템버 9월 정도에 아예 책이 나왔어요. 바닥부터 LM 만들기라는 이름으로 아예 책이 나왔습니다. 요 책을 한국어로 번역하는 분도 계시더라고요."
+                        </div>
+                        <div class="progress-container">
+                            <div class="progress-label">
+                                <span>학습 자료 증가율</span>
+                                <span>90%</span>
+                            </div>
+                            <div class="progress-bar">
+                                <div class="progress-value" style="width: 90%;"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <section>
+            <h2 class="section-title">LLM 개발 프로세스 개요</h2>
+            
+            <div class="insight">
+                LLM은 한 번에 다양한 기능을 수행하는 모델을 만드는 것이 아니라, 단계적으로 구축하며 각 단계에서 특정 능력을 학습시킵니다. "우리가 흔히 LM이라고 얘기를 하면은 최 GPT 같이 모델 하나가 굉장히 다양한 일을 할 수 있는 모델을 생각을 하죠. 최 GPT 테 수학 문제 풀라고 그러면 수학 문제 풀어주고 책 요약해 달라고 그러면 또 요약도 해주고 아주 다양한 일을 하잖아요. 그런데 처음부터 이렇게 다양한 일을 하도록 훈련을 시키는 건 아니고요..."
+            </div>
+            
+            <div class="two-column">
+                <div class="card">
+                    <h3 class="card-title"><span class="number">1</span>사전 학습 (Pre-training)</h3>
+                    <div class="card-content">
+                        <p>이 단계에서는 모델이 일반적인 언어 능력을 학습합니다. 기본적으로 "하던 말을 이어서 하도록" 가르칩니다. 이를 위해 책, 웹 텍스트 등의 대량 데이터가 필요합니다.</p>
+                        <div class="quote">
+                            "사전 훈련이 끝난 다음에 두 번째 단계로 파인 튜닝이라는 미세조정 단계에서 특정 업무를 가르칩니다. 사전 훈련을 시킬 때는 그냥 문서가 있으면 돼요. 잘 쓰여진 책 같은게 있으면 그 책을 보면서 알아서 공부를 할 수가 있습니다."
+                        </div>
+                        <p>사전 학습에 사용되는 데이터는 대체로 구하기 쉽고, 일반적인 텍스트 문서를 활용할 수 있습니다.</p>
+                    </div>
+                </div>
+                
+                <div class="card">
+                    <h3 class="card-title"><span class="number">2</span>미세 조정 (Fine-tuning)</h3>
+                    <div class="card-content">
+                        <p>사전 학습된 모델을 특정 작업에 맞게 조정합니다. 이 단계에서는 질문-답변 쌍과 같은 특수 데이터셋이 필요합니다. 회사가 보유한 데이터를 활용하여 특정 업무에 특화된 모델을 만들 수 있습니다.</p>
+                        <div class="quote">
+                            "미세 조정을 하면서 특정 업무를 가르칠 때는 특정 업무에 맞는 데이터셋이 필요합니다. 예를 들어서 질문 답변을 하는 체포를 만들겠다라는 어떤 질문에는 어떻게 대답을 한다 요런 데이터셋이 굉장히 많이 필요합니다. 요거는 조금 얻기가 힘들죠."
+                        </div>
+                        <div class="progress-container">
+                            <div class="progress-label">
+                                <span>일반 언어 능력</span>
+                                <span>100%</span>
+                            </div>
+                            <div class="progress-bar">
+                                <div class="progress-value" style="width: 100%;"></div>
+                            </div>
+                        </div>
+                        <div class="progress-container">
+                            <div class="progress-label">
+                                <span>특정 업무 능력</span>
+                                <span>85%</span>
+                            </div>
+                            <div class="progress-bar">
+                                <div class="progress-value" style="width: 85%;"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="card-container">
+                <div class="card">
+                    <h3 class="card-title"><span class="number">3</span>추론 개선 (Reasoning)</h3>
+                    <div class="card-content">
+                        <p>모델의 추론 능력을 향상시키는 단계입니다. ChatGPT의 리즌닝(Reasoning) 기능처럼, 모델이 내부적으로 질문을 반복하며 더 깊이 있는 결론을 도출하도록 합니다. 이는 답변의 품질을 높이지만 처리 속도가 느려지고 비용이 증가합니다.</p>
+                        <div class="quote">
+                            "사람이 생각을 할 때도 생각을 하고 또 하고 하면서 더 깊이 있는 결론을 이끌어낼 수가 있죠. LM 내부적으로 질문을 반복해서 더 좋은 결론을 만들어 낼 수가 있습니다. 지금 보시는 건 최 GPT 있데요 그요 리진을 클릭을 하고 질문을 하면은 더 오래 걸립니다. 그래 내부적으로 LM 자체가 질문을 하고 받고 하고 받고 요거를 여러 번 반복을 하게 돼요."
+                        </div>
+                        <div class="chart-container">
+                            <div class="donut-chart">
+                                <svg viewBox="0 0 36 36">
+                                    <path d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831" fill="none" stroke="#DDDDDD" stroke-width="3" />
+                                    <path d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831" fill="none" stroke="#7B4AFF" stroke-width="3" stroke-dasharray="65, 100" stroke-dashoffset="25" />
+                                </svg>
+                                <div class="center">
+                                    <div class="value">65%</div>
+                                    <div class="label">성능 향상률</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="card">
+                    <h3 class="card-title"><span class="number">4</span>확장 및 보강 (Augmentation)</h3>
+                    <div class="card-content">
+                        <p>LLM의 성능을 향상시키기 위한 추가 기술들을 활용하는 단계입니다. 데이터베이스 연결, 인터넷 검색 통합, 외부 도구 연동 등을 통해 모델의 지식 범위와 정확성을 확장합니다.</p>
+                        <div class="quote">
+                            "우리가 LM 이다라고 하면은 인간들이 갖고 있는 모든 지식을 뉴럴 네트워크 하나가 다 알고 있는 것처럼 생각을 할 수 있는데요. 이게 쉽지가 않죠. 그래서 뉴럴 네트워크 크기는 조금 줄이고 어떤 데이터베이스를 붙여 준다든가 어 그때그때 인터넷 검색을 해서 새로운 정보도 취득을 할 수 있게 한다든가 해서 LM 지식의 범위 하고 정확성 그다음에 시의성 같은 성능들을 높일 수가 있습니다."
+                        </div>
+                        <p>소규모 모델을 효율적으로 활용하기 위한 전략으로, 최근 AI 에이전트 개발에서 중요한 접근법으로 부상하고 있습니다.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <section>
+            <h2 class="section-title">LLM의 핵심 기술: Masked Self-Attention</h2>
+            
+            <div class="card">
+                <div class="card-content">
+                    <p>트랜스포머 아키텍처의 핵심인 셀프 어텐션(Self-Attention)은 텍스트 내 단어 간의 관계를 학습하는 메커니즘입니다. LLM 훈련에서는 '마스크드 셀프 어텐션(Masked Self-Attention)'을 사용하여 미래의 토큰을 보지 못하게 하고, 모델이 현재까지의 정보만으로 다음 토큰을 예측하도록 합니다.</p>
+                    
+                    <div class="quote">
+                        "요게 훈련시키는 기본 원리고 밀접한 관계가 있습니다. 여기 왼쪽 같은 경우는 모든게 관계가 다 공개가 돼 있죠. 이러면은 다음 단어가 뭔지를 미리 알아 버리니까 답지 보고 대답을 시키는 방식이 돼 버려요. 그래서 다음에 올 단어들을 가리기 위해서 이렇게 마스크로 지워 버린 겁니다."
+                    </div>
+                    
+                    <div class="illustration">
+                        <div style="text-align: center;">
+                            <h4 style="margin-bottom: 10px; color: var(--neutral-4);">마스크드 어텐션 행렬 예시</h4>
+                            <p style="margin-bottom: 15px;">문장: "your journey starts with one step"</p>
+                            
+                            <div class="attention-matrix">
+                                <!-- 행 1: your -->
+                                <div class="attention-cell active">0.16</div>
+                                <div class="attention-cell masked"></div>
+                                <div class="attention-cell masked"></div>
+                                <div class="attention-cell masked"></div>
+                                <div class="attention-cell masked"></div>
+                                <div class="attention-cell masked"></div>
+                                <div class="attention-cell masked"></div>
+                                
+                                <!-- 행 2: journey -->
+                                <div class="attention-cell active">0.12</div>
+                                <div class="attention-cell active">0.21</div>
+                                <div class="attention-cell masked"></div>
+                                <div class="attention-cell masked"></div>
+                                <div class="attention-cell masked"></div>
+                                <div class="attention-cell masked"></div>
+                                <div class="attention-cell masked"></div>
+                                
+                                <!-- 행 3: starts -->
+                                <div class="attention-cell active">0.08</div>
+                                <div class="attention-cell active">0.15</div>
+                                <div class="attention-cell active">0.25</div>
+                                <div class="attention-cell masked"></div>
+                                <div class="attention-cell masked"></div>
+                                <div class="attention-cell masked"></div>
+                                <div class="attention-cell masked"></div>
+                                
+                                <!-- 행 4: with -->
+                                <div class="attention-cell active">0.05</div>
+                                <div class="attention-cell active">0.11</div>
+                                <div class="attention-cell active">0.18</div>
+                                <div class="attention-cell active">0.22</div>
+                                <div class="attention-cell masked"></div>
+                                <div class="attention-cell masked"></div>
+                                <div class="attention-cell masked"></div>
+                                
+                                <!-- 행 5: one -->
+                                <div class="attention-cell active">0.04</div>
+                                <div class="attention-cell active">0.09</div>
+                                <div class="attention-cell active">0.14</div>
+                                <div class="attention-cell active">0.18</div>
+                                <div class="attention-cell active">0.24</div>
+                                <div class="attention-cell masked"></div>
+                                <div class="attention-cell masked"></div>
+                                
+                                <!-- 행 6: step -->
+                                <div class="attention-cell active">0.03</div>
+                                <div class="attention-cell active">0.07</div>
+                                <div class="attention-cell active">0.11</div>
+                                <div class="attention-cell active">0.15</div>
+                                <div class="attention-cell active">0.19</div>
+                                <div class="attention-cell active">0.27</div>
+                                <div class="attention-cell masked"></div>
+                            </div>
+                            
+                            <p style="margin-top: 15px; font-size: 14px; color: var(--neutral-3);">
+                                빈 셀(X 표시)은 마스킹된 부분으로, 모델이 미래 토큰을 볼 수 없게 만듭니다.<br>
+                                숫자는 어텐션 가중치로, 각 토큰이 다른 토큰과의 관계 강도를 나타냅니다.
                             </p>
                         </div>
-                        <div style="background-color: #f0f0f0; padding: 10px; border-radius: 10px; margin-top: 15px; font-size: 14px;">
-                            <strong>토큰화 예시:</strong><br>
-                            "Hello world" → [15339, 1917]<br>
-                            "Hello  world" → [15339, 220, 1917]<br>
-                            "hello world" → [15496, 2159, 29889]
-                        </div>
                     </div>
-                </div>
-                
-                <div class="card">
-                    <div class="solution-badge">컴퓨팅 인프라</div>
-                    <h4 class="card-title"><i class="fas fa-microchip"></i>GPU 클러스터</h4>
-                    <div class="card-content">
-                        <p>현대 LLM 훈련에는 대규모 GPU 클러스터가 필요합니다. NVIDIA의 H100 GPU가 많이 사용됩니다.</p>
-                        <div class="progress-bar-container">
-                            <div class="progress-bar" style="width: 85%;"></div>
-                        </div>
-                        <p style="text-align: right; font-size: 14px; color: #666666;">전력 사용량: 85%</p>
-                        <div class="insight-bar">
-                            <i class="fas fa-bolt"></i> 대규모 모델 훈련에는 수천 개의 GPU와 수백만 달러의 비용이 필요합니다.
-                        </div>
-                        <p>주요 기업들은 텍스트 예측을 위해 대규모 데이터 센터를 구축하고 있으며, 이는 NVIDIA와 같은 GPU 제조업체의 주가를 크게 상승시켰습니다.</p>
+                    
+                    <div class="code-block">
+# 마스크드 셀프 어텐션 구현 코드 예시
+def masked_self_attention(query, key, value, mask=None):
+    # 어텐션 점수 계산: Q * K^T / sqrt(d_k)
+    scores = torch.matmul(query, key.transpose(-2, -1)) / math.sqrt(query.size(-1))
+    
+    # 미래 토큰을 볼 수 없도록 마스킹 적용
+    if mask is not None:
+        scores = scores.masked_fill(mask == 0, -1e9)
+    
+    # 소프트맥스로 확률 변환
+    attn_weights = F.softmax(scores, dim=-1)
+    
+    # 가중치와 값 곱하기
+    output = torch.matmul(attn_weights, value)
+    
+    return output, attn_weights
                     </div>
                 </div>
             </div>
-        </div>
+        </section>
         
-        <div class="section">
-            <h3 class="section-title">LLM 특성과 한계</h3>
+        <section>
+            <h2 class="section-title">LLM 구현 단계별 실습 가이드</h2>
             
-            <div class="cards-container">
-                <div class="card">
-                    <div class="solution-badge">LLM 특성</div>
-                    <h4 class="card-title"><i class="fas fa-brain"></i>인 컨텍스트 학습</h4>
-                    <div class="card-content">
-                        <p>LLM은 컨텍스트 내에서 즉시 학습할 수 있는 능력을 가지고 있습니다. 몇 가지 예시를 제공하면, 모델은 패턴을 인식하고 유사한 작업을 수행할 수 있습니다.</p>
+            <div class="process-flow">
+                <div class="process-step">
+                    <div class="step-number">1</div>
+                    <div class="step-content">
+                        <h3 class="step-title">훈련 데이터 준비</h3>
+                        <p>LLM 훈련에 사용할 텍스트 데이터를 수집하고 전처리합니다. 이 과정은 가장 시간이 많이 소요될 수 있습니다.</p>
                         <div class="quote">
-                            LLM은 프롬프트 내의 예시를 통해 새로운 작업이나 형식을 학습할 수 있습니다. 이를 "few-shot learning"이라고 합니다.
+                            "훈련 데이터를 준비하는게 사실 손이 좀 많이 가죠. 일단 여기서는 제가 가장 간단하게 해 볼 수 있는 방법 안내를 해 드릴 겁니다."
                         </div>
-                        <p>예시:</p>
-                        <div style="background-color: #f0f0f0; padding: 10px; border-radius: 10px; font-family: monospace; font-size: 14px;">
-                            영어: Hello → 한국어: 안녕하세요<br>
-                            영어: Thank you → 한국어: 감사합니다<br>
-                            영어: Good morning → 한국어: ?
-                        </div>
-                    </div>
-                </div>
-                
-                <div class="card">
-                    <div class="solution-badge">주요 한계</div>
-                    <h4 class="card-title"><i class="fas fa-exclamation-triangle"></i>환각 현상</h4>
-                    <div class="card-content">
-                        <p>LLM은 잘 모르는 주제에 대해 자신 있게 거짓 정보를 생성하는 경향이 있습니다. 이를 '환각(hallucination)'이라고 합니다.</p>
-                        <p>환각 완화 방법:</p>
-                        <ul style="padding-left: 20px; margin-top: 10px;">
-                            <li>모델이 모르는 것을 인정하도록 학습시키기</li>
-                            <li>웹 검색과 같은 외부 도구 통합하기</li>
-                            <li>확률적 샘플링 조정하기</li>
-                            <li>모델 지식의 경계를 체계적으로 테스트하기</li>
-                        </ul>
-                        <div class="insight-bar">
-                            <i class="fas fa-lightbulb"></i> 메타의 Llama 3 모델은 모델이 알지 못하는 정보를 찾아내기 위해 자동화된 테스트를 사용하여 환각을 줄였습니다.
-                        </div>
-                    </div>
-                </div>
-                
-                <div class="card">
-                    <div class="solution-badge">도구 사용</div>
-                    <h4 class="card-title"><i class="fas fa-tools"></i>외부 도구 통합</h4>
-                    <div class="card-content">
-                        <p>최신 LLM은 웹 검색, 코드 실행, 계산 등의 외부 도구를 사용할 수 있습니다. 이를 통해 사실적인 정보를 제공하고 복잡한 작업을 수행할 수 있습니다.</p>
-                        <div class="insight-bar">
-                            <i class="fas fa-lightbulb"></i> 도구 사용은 특별한 토큰을 통해 구현되며, 모델은 적절한 시점에 도구를 호출하도록 학습됩니다.
-                        </div>
-                        <p>일반적인 도구 유형:</p>
-                        <ul style="padding-left: 20px; margin-top: 10px;">
-                            <li><strong>웹 검색</strong>: 최신 정보 검색</li>
-                            <li><strong>코드 인터프리터</strong>: 코드 실행 및 데이터 분석</li>
-                            <li><strong>이미지 생성/분석</strong>: 시각적 콘텐츠 처리</li>
-                            <li><strong>계산기</strong>: 복잡한 수학적 계산</li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-        </div>
-        
-        <div class="section">
-            <h3 class="section-title">LLM 발전 과정</h3>
-            
-            <div class="cards-container">
-                <div class="card">
-                    <div class="solution-badge">2019</div>
-                    <h4 class="card-title"><i class="fas fa-history"></i>GPT-2</h4>
-                    <div class="card-content">
-                        <p>OpenAI가 개발한 GPT-2는 현대적 LLM의 시작점으로 볼 수 있습니다.</p>
-                        <ul style="padding-left: 20px; margin-top: 10px;">
-                            <li>1.5B 매개변수</li>
-                            <li>1,024 토큰 최대 컨텍스트 길이</li>
-                            <li>1,000억 토큰으로 훈련</li>
-                            <li>당시 훈련 비용: 약 $40,000</li>
-                        </ul>
-                        <div class="insight-bar">
-                            <i class="fas fa-lightbulb"></i> 오늘날 동일한 모델을 훈련하는 비용은 하드웨어와 소프트웨어 최적화 덕분에 약 $100로 감소했습니다.
-                        </div>
-                    </div>
-                </div>
-                
-                <div class="card">
-                    <div class="solution-badge">2022</div>
-                    <h4 class="card-title"><i class="fas fa-rocket"></i>InstructGPT & RLHF</h4>
-                    <div class="card-content">
-                        <p>OpenAI가 개발한 InstructGPT는 사람의 지시에 따르도록 미세 조정된 첫 번째 주요 모델입니다.</p>
-                        <div class="quote">
-                            InstructGPT는 인간 라벨러를 활용하여 대화 데이터셋을 구축했습니다. 이는 모델이 유용하고, 진실되며, 안전한 답변을 제공하도록 했습니다.
-                        </div>
-                        <p>RLHF(Reinforcement Learning from Human Feedback)는 인간의 선호도에 기반한 강화학습으로, 다음 단계를 포함합니다:</p>
-                        <ol style="padding-left: 20px; margin-top: 10px;">
-                            <li>SFT(Supervised Fine-Tuning): 인간이 작성한 답변으로 초기 미세 조정</li>
-                            <li>보상 모델 훈련: 인간의 선호도 학습</li>
-                            <li>강화학습: 보상 모델에 따라 응답 최적화</li>
-                        </ol>
-                    </div>
-                </div>
-                
-                <div class="card">
-                    <div class="solution-badge">현재</div>
-                    <h4 class="card-title"><i class="fas fa-chart-line"></i>최신 LLM</h4>
-                    <div class="card-content">
-                        <p>최신 모델은 수조 개의 매개변수를 가지며, 수백만 개의 대화로 미세 조정됩니다.</p>
-                        <p>주요 특징:</p>
-                        <ul style="padding-left: 20px; margin-top: 10px;">
-                            <li>더 긴 컨텍스트 길이 (백만 토큰 이상)</li>
-                            <li>외부 도구 통합</li>
-                            <li>합성 데이터와 인간 피드백의 조합으로 훈련</li>
-                            <li>더 나은 추론 능력과 사실 정확성</li>
-                            <li>전문 분야별 모델 (코드, 의학, 법률 등)</li>
-                        </ul>
-                        <div class="progress-bar-container">
-                            <div class="progress-bar" style="width: 100%;"></div>
-                        </div>
-                        <p style="text-align: right; font-size: 14px; color: #666666;">컴퓨팅 요구사항 증가</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-        
-                <div class="section">
-            <h3 class="section-title">기본 모델 VS 어시스턴트 모델</h3>
-            
-            <div class="highlight-box">
-                <div style="display: flex; justify-content: space-between; margin-bottom: 20px;">
-                    <div style="flex: 1; padding-right: 20px;">
-                        <h4 style="color: #7B4AFF; margin-bottom: 10px; font-size: 22px;"><i class="fas fa-robot"></i> 기본 모델 (Base Model)</h4>
-                        <ul style="padding-left: 20px;">
-                            <li>인터넷 텍스트 토큰 시뮬레이터</li>
-                            <li>단순히 다음 토큰을 예측하는 역할</li>
-                            <li>대화 맥락이 없고 지시에 따르지 않음</li>
-                            <li>인터넷 텍스트를 통계적으로 모방</li>
-                            <li>지식이 매개변수(가중치)에 저장됨</li>
-                        </ul>
-                        <div style="background-color: #f0f0f0; padding: 10px; border-radius: 10px; margin-top: 15px; font-size: 14px;">
-                            <strong>기본 모델 프롬프트:</strong><br>
-                            "What is 2+2?"<br>
-                            → "2+2 is 4. In elementary mathematics..."
-                        </div>
-                    </div>
-                    <div style="flex: 1; padding-left: 20px; border-left: 1px dashed #7B4AFF;">
-                        <h4 style="color: #7B4AFF; margin-bottom: 10px; font-size: 22px;"><i class="fas fa-comments"></i> 어시스턴트 모델</h4>
-                        <ul style="padding-left: 20px;">
-                            <li>대화 데이터셋으로 미세 조정됨</li>
-                            <li>지시에 따르고 유용한 답변 제공</li>
-                            <li>인간의 선호도에 맞게 정렬됨</li>
-                            <li>도구 사용 능력 보유</li>
-                            <li>안전성과 사실 정확성 향상</li>
-                        </ul>
-                        <div style="background-color: #f0f0f0; padding: 10px; border-radius: 10px; margin-top: 15px; font-size: 14px;">
-                            <strong>어시스턴트 모델 응답:</strong><br>
-                            "What is 2+2?"<br>
-                            → "2+2 equals 4. Is there anything else I can help you with?"
-                        </div>
-                    </div>
-                </div>
-                <div class="insight-bar">
-                    <i class="fas fa-lightbulb"></i> 어시스턴트 모델은 기본 모델 위에 구축됩니다. 기본 모델의 지식을 유지하면서 인간의 지시에 따르고 유용한 답변을 제공하도록 훈련됩니다.
-                </div>
-            </div>
-        </div>
-        
-        <div class="section">
-            <h3 class="section-title">LLM 심리학: 지식 저장 방식</h3>
-            
-            <div class="cards-container">
-                <div class="card">
-                    <div class="solution-badge">모델 기억</div>
-                    <h4 class="card-title"><i class="fas fa-brain"></i>매개변수 지식</h4>
-                    <div class="card-content">
-                        <p>모델의 매개변수(가중치)에 저장된 지식은 <strong>흐릿한 회상</strong>과 같습니다. 훈련 중 자주 접한 정보는 더 잘 기억하지만, 드문 정보는 부정확할 수 있습니다.</p>
-                        <div class="quote">
-                            모델 매개변수에 저장된 지식은 마치 한 달 전에 읽은 책의 내용을 기억하는 것과 같습니다. 매개변수는 수십억 개의 숫자로 이루어진 거대한 '압축된 인터넷'입니다.
-                        </div>
-                    </div>
-                </div>
-                
-                <div class="card">
-                    <div class="solution-badge">작업 기억</div>
-                    <h4 class="card-title"><i class="fas fa-memory"></i>컨텍스트 윈도우</h4>
-                    <div class="card-content">
-                        <p>컨텍스트 윈도우는 모델의 <strong>작업 기억</strong>입니다. 현재 대화나 직접 제공된 정보가 포함되며, 이 정보는 모델이 직접 접근할 수 있습니다.</p>
-                        <div class="insight-bar">
-                            <i class="fas fa-lightbulb"></i> 웹 검색과 같은 도구는 외부 정보를 컨텍스트 윈도우에 가져와 모델의 '작업 기억'을 확장합니다.
-                        </div>
-                        <p>이는 인간이 책을 직접 펼쳐 정보를 확인하는 것과 유사합니다. 컨텍스트 윈도우의 정보는 매개변수의 흐릿한 기억보다 더 정확하게 처리됩니다.</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-        
-        <div class="section">
-            <h3 class="section-title">모델 평가 및 안전성</h3>
-            
-            <div class="cards-container">
-                <div class="card">
-                    <div class="solution-badge">평가 방법</div>
-                    <h4 class="card-title"><i class="fas fa-clipboard-check"></i>모델 평가 기법</h4>
-                    <div class="card-content">
-                        <p>LLM은 다양한 벤치마크와 인간 평가를 통해 성능을 측정합니다:</p>
-                        <ul style="padding-left: 20px; margin-top: 10px;">
-                            <li><strong>벤치마크 테스트</strong>: MMLU, HumanEval, GSM8K 등</li>
-                            <li><strong>사실 정확성</strong>: 환각 측정 및 지식 평가</li>
-                            <li><strong>인간 평가자</strong>: 답변의 유용성과 품질 평가</li>
-                            <li><strong>적대적 테스트</strong>: 모델의 약점과 한계 탐색</li>
-                        </ul>
-                    </div>
-                </div>
-                
-                <div class="card">
-                    <div class="solution-badge">안전성</div>
-                    <h4 class="card-title"><i class="fas fa-shield-alt"></i>모델 안전성 및 정렬</h4>
-                    <div class="card-content">
-                        <p>LLM을 안전하게 만들기 위한 다양한 기법이 적용됩니다:</p>
-                        <ul style="padding-left: 20px; margin-top: 10px;">
-                            <li><strong>RLHF</strong>: 인간의 선호도에 맞게 정렬</li>
-                            <li><strong>레드 팀(Red Teaming)</strong>: 취약점 사전 발견</li>
-                            <li><strong>안전한 훈련 데이터</strong>: 유해 콘텐츠 필터링</li>
-                            <li><strong>자동 평가</strong>: 위험한 출력 탐지</li>
-                        </ul>
-                        <div class="insight-bar">
-                            <i class="fas fa-lightbulb"></i> 모델 훈련자는 상세한 라벨링 지침을 통해 모델이 도움이 되고, 진실되며, 안전하도록 조정합니다.
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
+                        <div class="card-container">
+                            <div class="card">
+                                <div class="badge">영어 데이터셋</div>
+                                <p>해리 포터, 이상한 나라의 앨리스, 셰익스피어 작품 등 영어 책을 캐글에서 다운로드할 수 있습니다.</p>
+                                <div class="code-block">
+# 텍스트 정제 예시 코드
+def clean_text(text):
+    # 줄바꿈 제거
+    text = re.sub(r'\n+', ' ', text)
+    # 연속된 공백 제거
+    text = re.sub(r'\s+', ' ', text)
+    return text.strip()
 
-        <div class="footer">
-            <p>이 인포그래픽은 Andrej Karpathy의 "Large Language Models Explained" 비디오를 기반으로 제작되었습니다.</p>
-            <p>© 2025 LLM 그래픽 레코딩 인포그래픽</p>
-        </div>
+# 파일 읽기 및 정제
+with open('harry_potter.txt', 'r', encoding='utf-8') as f:
+    text = f.read()
+    
+cleaned_text = clean_text(text)
+with open('cleaned_harry_potter.txt', 'w', encoding='utf-8') as f:
+    f.write(cleaned_text)
+                                </div>
+                            </div>
+                            <div class="card">
+                                <div class="badge">한국어 데이터셋</div>
+                                <p>한국어와 한자가 섞인 텍스트(예: 무협지)도 사용 가능합니다. 한국어에 맞는 토크나이저를 사용해야 합니다.</p>
+                                <div class="quote">
+                                    "무향이라 책의 txt 파일을 인터넷에서 검색을 해서 찾았고요 요거를 클리닝 과정을 거쳐서이 클린드 무향 뭐뭐뭐 txt 저장을 했습니다."
+                                </div>
+                                <p>실제 책 한 권의 분량은 약 48만 글자 정도이며, 이 정도 규모면 기본적인 모델 학습에 충분합니다.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="process-step">
+                    <div class="step-number">2</div>
+                    <div class="step-content">
+                        <h3 class="step-title">토큰화(Tokenization)</h3>
+                        <p>텍스트를 토큰으로 변환하는 과정입니다. 토큰이란 모델이 이해할 수 있는 작은 텍스트 단위로, 주로 단어나 단어의 일부를 의미합니다.</p>
+                        <div class="quote">
+                            "우리가 훈련에 사용하는 문자열을 뉴럴 네트워크 테 그냥 문자열로서 넣어 주는 건 아니고요 숫자로 바꿉니다. 이때 토크나이저 거를 사용을 해요."
+                        </div>
+                        <div class="two-column">
+                            <div class="card">
+                                <div class="badge">영어 토크나이저</div>
+                                <div class="code-block">
+# tiktoken 라이브러리 사용
+import tiktoken
+
+tokenizer = tiktoken.get_encoding("gpt2")
+tokens = tokenizer.encode("Harry Potter was a wizard.")
+# 결과: [18308, 14, 4179, 373, 257, 1873, 13]
+
+# 토큰 디코딩으로 확인
+for token in tokens:
+    print(f"토큰 {token}: {tokenizer.decode([token])}")
+# 출력:
+# 토큰 18308: Harry
+# 토큰 14:  Potter
+# 토큰 4179:  was
+# 토큰 373:  a
+# 토큰 1873:  wizard
+# 토큰 13: .
+                                </div>
+                            </div>
+                            <div class="card">
+                                <div class="badge">한국어 토크나이저</div>
+                                <div class="code-block">
+# 허깅페이스 오토토크나이저 사용
+from transformers import AutoTokenizer
+
+# 한국어 지원 토크나이저 초기화
+tokenizer = AutoTokenizer.from_pretrained("LG-AI/XGLM-1.3B-ko")
+tokens = tokenizer.encode("무향이란 녀석")
+# 토큰 디코딩으로 확인
+for token in tokens:
+    print(f"토큰 {token}: {tokenizer.decode([token])}")
+                                </div>
+                                <p>한글과 한자가 섞인 텍스트도 적절한 토크나이저를 사용하면 효과적으로 처리할 수 있습니다. 영어에 비해 한글은 토큰화가 복잡할 수 있습니다.</p>
+                            </div>
+                        </div>
+                        
+                        <div class="card" style="margin-top: var(--spacing-md);">
+                            <div class="badge">토큰화 비교</div>
+                            <table class="comparison-table">
+                                <tr>
+                                    <th>특성</th>
+                                    <th>영어 토큰화</th>
+                                    <th>한국어 토큰화</th>
+                                </tr>
+                                <tr>
+                                    <td>토큰 특성</td>
+                                    <td>주로 단어 및 단어의 일부</td>
+                                    <td>음절 단위 또는 형태소 단위</td>
+                                </tr>
+                                <tr>
+                                    <td>토큰 수</td>
+                                    <td>영어 문장은 비교적 적은 토큰으로 표현</td>
+                                    <td>한글은 같은 길이의 문장이라도 토큰 수가 많을 수 있음</td>
+                                </tr>
+                                <tr>
+                                    <td>특수 문자 처리</td>
+                                    <td>마침표, 쉼표 등은 별도 토큰</td>
+                                    <td>마찬가지로 별도 토큰, 한자는 개별 처리 필요</td>
+                                </tr>
+                                <tr>
+                                    <td>추천 토크나이저</td>
+                                    <td>tiktoken(GPT 계열), SentencePiece</td>
+                                    <td>LG-AI/XGLM-1.3B-ko, KoGPT</td>
+                                </tr>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="process-step">
+                    <div class="step-number">3</div>
+                    <div class="step-content">
+                        <h3 class="step-title">데이터 로더 구현</h3>
+                        <p>토큰화된 데이터를 모델에 효율적으로 공급하기 위한 데이터 로더를 구현합니다. 이 과정에서 중요한 개념은 '다음 단어 예측'입니다.</p>
+                        <div class="quote">
+                            "데이터 로더를 정의한다는게 뭐 코딩을 한다라는 의미 보다는 훈련을 시키는 전략에 대해서 좀 이해를 해야 됩니다."
+                        </div>
+                        <div class="card">
+                            <div class="badge">텍스트 시퀀스 예시</div>
+                            <div class="quote">
+                                "Harry Potter was a wizard."라는 문장을 학습할 때:<br>
+                                - 입력: "Harry" → 출력: "Potter"<br>
+                                - 입력: "Harry Potter" → 출력: "was"<br>
+                                - 입력: "Harry Potter was" → 출력: "a"<br>
+                                - 입력: "Harry Potter was a" → 출력: "wizard"<br>
+                                - 입력: "Harry Potter was a wizard" → 출력: "."
+                            </div>
+                            <div class="code-block">
+# PyTorch 데이터셋 예시
+class MyDataset(Dataset):
+    def __init__(self, text, tokenizer, context_length=128):
+        self.tokenized_ids = tokenizer.encode(text)
+        self.tokenizer = tokenizer
+        self.context_length = context_length
+    
+    def __len__(self):
+        return len(self.tokenized_ids) - self.context_length
+    
+    def __getitem__(self, idx):
+        # 입력 시퀀스 (x)
+        x = self.tokenized_ids[idx:idx+self.context_length]
+        # 타겟 시퀀스 (y) - 입력보다 한 토큰 앞으로 이동
+        y = self.tokenized_ids[idx+1:idx+self.context_length+1]
+        return torch.tensor(x), torch.tensor(y)
+
+# 데이터로더 생성 예시
+dataset = MyDataset(cleaned_text, tokenizer)
+dataloader = DataLoader(dataset, batch_size=32, shuffle=True)
+
+# 데이터 확인
+for x, y in dataloader:
+    print("입력:", tokenizer.decode(x[0].tolist()))
+    print("타겟:", tokenizer.decode(y[0].tolist()))
+    break
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="process-step">
+                    <div class="step-number">4</div>
+                    <div class="step-content">
+                        <h3 class="step-title">모델 구조 정의</h3>
+                        <p>트랜스포머(Transformer) 아키텍처를 기반으로 모델을 정의합니다. 셀프 어텐션 메커니즘이 핵심 구성 요소입니다.</p>
+                        <div class="quote">
+                            "LM 그래는 셀프 어텐션을 구현하는 트랜스포머 구조가 아주 효과적이다 거 많이들 들어 보셨을 텐데요."
+                        </div>
+                        <div class="card">
+                            <div class="badge">트랜스포머 블록 구조</div>
+                            <div class="illustration">
+                                <svg width="400" height="300" viewBox="0 0 400 300">
+                                    <!-- 배경 -->
+                                    <rect width="400" height="300" fill="none" />
+                                    
+                                    <!-- 입력 -->
+                                    <rect x="150" y="20" width="100" height="30" rx="5" fill="#F5F5F7" stroke="#7B4AFF" stroke-width="2" />
+                                    <text x="200" y="40" text-anchor="middle" fill="#1A1A1A" font-size="14">입력 임베딩</text>
+                                    
+                                    <!-- 화살표 -->
+                                    <line x1="200" y1="50" x2="200" y2="70" stroke="#7B4AFF" stroke-width="2" />
+                                    <polygon points="195,65 200,75 205,65" fill="#7B4AFF" />
+                                    
+                                    <!-- 멀티헤드 어텐션 -->
+                                    <rect x="120" y="75" width="160" height="50" rx="5" fill="#F5F5F7" stroke="#7B4AFF" stroke-width="2" />
+                                    <text x="200" y="105" text-anchor="middle" fill="#1A1A1A" font-size="14">마스크드 멀티헤드 어텐션</text>
+                                    
+                                    <!-- 화살표 -->
+                                    <line x1="200" y1="125" x2="200" y2="145" stroke="#7B4AFF" stroke-width="2" />
+                                    <polygon points="195,140 200,150 205,140" fill="#7B4AFF" />
+                                    
+                                    <!-- 레이어 정규화 -->
+                                    <rect x="130" y="150" width="140" height="30" rx="5" fill="#F5F5F7" stroke="#7B4AFF" stroke-width="2" />
+                                    <text x="200" y="170" text-anchor="middle" fill="#1A1A1A" font-size="14">레이어 정규화</text>
+                                    
+                                    <!-- 화살표 -->
+                                    <line x1="200" y1="180" x2="200" y2="200" stroke="#7B4AFF" stroke-width="2" />
+                                    <polygon points="195,195 200,205 205,195" fill="#7B4AFF" />
+                                    
+                                    <!-- 피드 포워드 -->
+                                    <rect x="120" y="205" width="160" height="50" rx="5" fill="#F5F5F7" stroke="#7B4AFF" stroke-width="2" />
+                                    <text x="200" y="235" text-anchor="middle" fill="#1A1A1A" font-size="14">피드 포워드 네트워크</text>
+                                    
+                                    <!-- 화살표 -->
+                                    <line x1="200" y1="255" x2="200" y2="275" stroke="#7B4AFF" stroke-width="2" />
+                                    <polygon points="195,270 200,280 205,270" fill="#7B4AFF" />
+                                    
+                                    <!-- 출력 -->
+                                    <rect x="150" y="280" width="100" height="20" rx="5" fill="#F5F5F7" stroke="#7B4AFF" stroke-width="2" />
+                                    <text x="200" y="295" text-anchor="middle" fill="#1A1A1A" font-size="12">출력</text>
+                                    
+                                    <!-- 스킵 커넥션 -->
+                                    <path d="M 250 35 C 320 35, 320 165, 250 165" fill="none" stroke="#7B4AFF" stroke-width="2" stroke-dasharray="5,5" />
+                                    <path d="M 250 165 C 320 165, 320 290, 250 290" fill="none" stroke="#7B4AFF" stroke-width="2" stroke-dasharray="5,5" />
+                                </svg>
+                            </div>
+                            <div class="code-block">
+# GPT 모델 정의 예시
+class GPTModel(nn.Module):
+    def __init__(self, vocab_size, n_embd=128, n_head=4, n_layer=4, context_length=128):
+        super().__init__()
+        self.token_embedding = nn.Embedding(vocab_size, n_embd)
+        self.position_embedding = nn.Embedding(context_length, n_embd)
+        
+        # 트랜스포머 블록
+        self.transformer_blocks = nn.ModuleList([
+            TransformerBlock(n_embd, n_head) for _ in range(n_layer)
+        ])
+        
+        self.ln_f = nn.LayerNorm(n_embd)
+        self.lm_head = nn.Linear(n_embd, vocab_size)
+        
+    def forward(self, idx):
+        # 토큰 임베딩 + 위치 임베딩
+        pos = torch.arange(0, idx.size(1), device=idx.device)
+        tok_emb = self.token_embedding(idx)
+        pos_emb = self.position_embedding(pos)
+        x = tok_emb + pos_emb
+        
+        # 트랜스포머 블록 통과
+        for block in self.transformer_blocks:
+            x = block(x)
+            
+        x = self.ln_f(x)
+        logits = self.lm_head(x)
+        
+        return logits
+        
+# 트랜스포머 블록 정의
+class TransformerBlock(nn.Module):
+    def __init__(self, n_embd, n_head):
+        super().__init__()
+        self.ln_1 = nn.LayerNorm(n_embd)
+        self.attn = MultiHeadAttention(n_embd, n_head)
+        self.ln_2 = nn.LayerNorm(n_embd)
+        self.ffwd = FeedForward(n_embd)
+        
+    def forward(self, x):
+        x = x + self.attn(self.ln_1(x))
+        x = x + self.ffwd(self.ln_2(x))
+        return x
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="process-step">
+                    <div class="step-number">5</div>
+                    <div class="step-content">
+                        <h3 class="step-title">모델 훈련</h3>
+                        <p>준비된 데이터와 모델 구조를 사용하여 실제 학습을 진행합니다. GPU가 있다면 훈련 속도가 크게 향상됩니다.</p>
+                        <div class="quote">
+                            "여러분들이 비디아 GPU 가지고 계시고 제대로 드라이버가 설치가 됐다라고 하면은 디바이스가 쿠다로 잡힐 겁니다. 그러면 GPU로 훈련을 시킬 수가 있어요."
+                        </div>
+                        <div class="two-column">
+                            <div class="card">
+                                <div class="badge">하드웨어 요구사항</div>
+                                <table class="comparison-table">
+                                    <tr>
+                                        <th>하드웨어</th>
+                                        <th>훈련 속도</th>
+                                        <th>권장 설정</th>
+                                    </tr>
+                                    <tr>
+                                        <td>GPU</td>
+                                        <td>해리포터 책 100 에폭: 약 2시간</td>
+                                        <td>배치 크기 증가, 더 큰 모델 가능</td>
+                                    </tr>
+                                    <tr>
+                                        <td>CPU</td>
+                                        <td>해리포터 책 10 에폭: 수 시간</td>
+                                        <td>데이터 크기 축소, 작은 모델</td>
+                                    </tr>
+                                </table>
+                                <div class="resource-card">
+                                    <p>"나는 GPU 없다 CPU 훈련을 시켜야 된다 하시는 경우에는 데이터 양을 줄이시면 됩니다. 예를 들면 요런 식으로 텍스트 전체를 사용하는게 아니라 일부만 사용을 하도록 코드를 살짝 고쳐서 데이터셋을 줄이시면 되겠죠."</p>
+                                </div>
+                            </div>
+                            <div class="card">
+                                <div class="badge">학습 설정</div>
+                                <div class="code-block">
+# 학습 파라미터
+epochs = 10  # 전체 데이터를 몇 번 반복할지 (100은 과함)
+batch_size = 32  # 한 번에 처리할 데이터 수
+learning_rate = 3e-4  # 학습률
+
+# 옵티마이저 및 손실 함수
+optimizer = torch.optim.AdamW(model.parameters(), lr=learning_rate)
+loss_fn = nn.CrossEntropyLoss()
+
+# 학습 루프
+for epoch in range(epochs):
+    total_loss = 0
+    for batch_idx, (x, y) in enumerate(train_loader):
+        x, y = x.to(device), y.to(device)
+        
+        # 순전파
+        logits = model(x)
+        loss = loss_fn(logits.view(-1, logits.size(-1)), y.view(-1))
+        
+        # 역전파
+        optimizer.zero_grad()
+        loss.backward()
+        optimizer.step()
+        
+        total_loss += loss.item()
+        
+    print(f"Epoch {epoch+1}/{epochs}, Loss: {total_loss/(batch_idx+1):.4f}")
+    
+    # 모델 저장
+    torch.save(model.state_dict(), f"model_epoch_{epoch+1}.pth")
+                                </div>
+                                <div class="progress-container">
+                                    <div class="progress-label">
+                                        <span>손실(Loss) 감소율</span>
+                                        <span>78%</span>
+                                    </div>
+                                    <div class="progress-bar">
+                                        <div class="progress-value" style="width: 78%;"></div>
+                                    </div>
+                                </div>
+                                <p>에폭 수는 컴퓨터 성능에 맞게 조절하세요. 영상에서는 "에폭을 100개를 훈련시킬 필요는 없었을 것 같다. 한 10번 20번 정도만 해도 아 이게 되네, 이게 진짜 되는구나 정도는 확인을 하실 수 있을 것 같습니다."라고 언급했습니다.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="process-step">
+                    <div class="step-number">6</div>
+                    <div class="step-content">
+                        <h3 class="step-title">결과 확인 및 텍스트 생성</h3>
+                        <p>훈련된 모델을 사용하여 텍스트를 생성하고 성능을 확인합니다. Temperature 매개변수를 조절하여 다양성을 제어할 수 있습니다.</p>
+                        <div class="card">
+                            <div class="badge">텍스트 생성 방법</div>
+                            <div class="quote">
+                                "내부적으로 한 단어씩 추측하는 거를 반복을 해요. 어떤 식으로 반복을 하냐면은 입력으로 해리포터이라고 넣어 줬다고 쳐요. 그래서 뉴럴 네트워크가 그다음에 올 단어가 워즈라고 대답을 했다라고 칩시다. 그러면은 요거를 합쳐서 다시 집어넣어요. 이런 식으로 내부적으로 반복을 하면서 말을 이어가게 됩니다."
+                            </div>
+                            <div class="code-block">
+# 텍스트 생성 함수
+def generate_text(model, tokenizer, prompt, max_new_tokens=50, temperature=1.0, top_k=10):
+    model.eval()
+    tokens = tokenizer.encode(prompt)
+    input_ids = torch.tensor(tokens).unsqueeze(0).to(device)
+    
+    with torch.no_grad():
+        for _ in range(max_new_tokens):
+            # 예측
+            logits = model(input_ids)
+            logits = logits[:, -1, :] / temperature  # 마지막 토큰의 로짓만 사용
+            
+            # 확률 계산
+            probs = F.softmax(logits, dim=-1)
+            
+            # top-k 샘플링
+            if top_k > 0:
+                values, indices = torch.topk(probs, top_k)
+                probs = torch.zeros_like(probs).scatter_(-1, indices, values)
+                probs = probs / probs.sum()
+            
+            # 다음 토큰 샘플링
+            next_token = torch.multinomial(probs, 1)
+            
+            # 입력에 새 토큰 추가
+            input_ids = torch.cat([input_ids, next_token], dim=1)
+            
+            # EOS 토큰이면 종료
+            if next_token.item() == tokenizer.eos_token_id:
+                break
+    
+    return tokenizer.decode(input_ids[0].tolist())
+                            </div>
+                        </div>
+                        
+                        <div class="two-column" style="margin-top: var(--spacing-md);">
+                            <div class="card">
+                                <div class="badge">Temperature 효과</div>
+                                <p>Temperature는 모델의 출력 다양성을 제어합니다:</p>
+                                <div class="quote">
+                                    "템퍼러처 0보다 클 때는 확률로 뽑아요. 확률이 제일 높은 거를 그냥 무조건 뽑는게 아니고 내부적으로 난수를 발생시켜서 뽑습니다. 확률이 높은 단어가 뽑힐 확률은 높지만 그렇다고 해서 확률이 낮은 단어를 안 뽑는 것도 아니에요."
+                                </div>
+                                <div class="progress-container">
+                                    <div class="progress-label">
+                                        <span>Temperature = 0.001</span>
+                                        <span>확정적</span>
+                                    </div>
+                                    <div class="progress-bar">
+                                        <div class="progress-value" style="width: 10%;"></div>
+                                    </div>
+                                </div>
+                                <div class="progress-container">
+                                    <div class="progress-label">
+                                        <span>Temperature = 1.0</span>
+                                        <span>균형적</span>
+                                    </div>
+                                    <div class="progress-bar">
+                                        <div class="progress-value" style="width: 50%;"></div>
+                                    </div>
+                                </div>
+                                <div class="progress-container">
+                                    <div class="progress-label">
+                                        <span>Temperature = 2.0</span>
+                                        <span>무작위적</span>
+                                    </div>
+                                    <div class="progress-bar">
+                                        <div class="progress-value" style="width: 90%;"></div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="card">
+                                <div class="badge">실제 생성 결과</div>
+                                <p><strong>영어 모델 (해리포터 데이터 기반):</strong></p>
+                                <div class="code-block">
+# 입력: "Dobby is"
+
+# Temperature = 0.001
+"Dobby is used to death. He was a loyal..."
+
+# Temperature = 1.0
+"Dobby is free! Without the Master's permission..."
+
+# Temperature = 2.0
+"Dobby is a very common pos... had... free..."
+                                </div>
+                                <p><strong>한국어 모델 (무협지 데이터 기반):</strong></p>
+                                <div class="code-block">
+# 입력: "묵향이란"
+
+# 출력 후보들:
+"묵향이란 녀석", "묵향이란 별칭",
+"묵향이란 선배", "묵향이란 나"
+
+# 입력: "무슨 일이라도 있냐"
+
+# 생성된 텍스트:
+"무슨 일이라도 있냐 질문을 받아서 뚫는다는 대답과 
+행동이 이상하다 생각하는데 반 이상의 진전..."
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <section>
+            <h2 class="section-title">LLM 개발 시 주의사항 및 팁</h2>
+            
+            <div class="card-container">
+                <div class="card">
+                    <div class="badge">리소스 관리</div>
+                    <h3 class="card-title">효율적인 훈련 방법</h3>
+                    <div class="card-content">
+                        <p>한정된 컴퓨팅 자원으로 효과적인 모델을 훈련하기 위한 팁입니다.</p>
+                        <ul style="margin-left: 20px; margin-bottom: 15px;">
+                            <li>데이터 크기를 컴퓨터 성능에 맞게 조절하세요</li>
+                            <li>배치 크기는 GPU 메모리에 맞게 설정하세요</li>
+                            <li>에폭 수는 10-20 정도면 기본 원리 확인에 충분합니다</li>
+                            <li>손실(Loss) 그래프를 확인하며 훈련 진행 상황을 모니터링하세요</li>
+                        </ul>
+                        <div class="quote">
+                            "대부분의 PC에서 그냥 한시간 정도 돌리면 충분히 이게 훈련이 잘 되는구나 확인할 수 있는 정도일 것 같습니다."
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="card">
+                    <div class="badge">데이터 준비</div>
+                    <h3 class="card-title">데이터 품질과 양</h3>
+                    <div class="card-content">
+                        <p>LLM 성능에 가장 큰 영향을 미치는 것은 데이터의 품질과 양입니다.</p>
+                        <div class="quote">
+                            "데이터가 중요하다라는게 있는데 이제 데이터에 데이터가 중요한 것도 맞고 어 데이터가 많이 필요한 것도 맞는데 밑에서 실제로 훈련시킬 때 사용하는 데이터를 보시면은 여러분들이 감을 잡으실 수 있을 것 같아요."
+                        </div>
+                        <div class="progress-container">
+                            <div class="progress-label">
+                                <span>책 한 권 분량</span>
+                                <span>약 48만 글자</span>
+                            </div>
+                            <div class="progress-bar">
+                                <div class="progress-value" style="width: 48%;"></div>
+                            </div>
+                        </div>
+                        <p>일반적인 실험 단계에서는 책 한 권 정도의 분량으로도 기본 원리 검증과 모델 동작 확인이 가능합니다. 그러나 실용적인 모델을 만들기 위해서는 더 많은 양질의 데이터가 필요합니다.</p>
+                    </div>
+                </div>
+                
+                <div class="card">
+                    <div class="badge">디버깅 및 평가</div>
+                    <h3 class="card-title">결과 분석 방법</h3>
+                    <div class="card-content">
+                        <p>모델의 동작을 이해하고 디버깅하는 방법에 대한 팁입니다.</p>
+                        <div class="quote">
+                            "제가 테스트를 해봤더니 훈련 데이터에 있는 거라서 확률이 높게 나왔네요. 완벽하게 만들어 주지는 못한다 렇게 볼 수가 있습니다."
+                        </div>
+                        <ul style="margin-left: 20px; margin-bottom: 15px;">
+                            <li>토큰화 과정을 단계별로 확인하여 모델이 어떻게 텍스트를 이해하는지 파악하세요</li>
+                            <li>훈련 중간에 모델을 저장하고 결과를 비교하여 발전 과정을 관찰하세요</li>
+                            <li>다양한 입력으로 모델을 테스트하여 일반화 능력을 평가하세요</li>
+                            <li>확률 분포를 확인하여 모델의 예측 신뢰도를 분석하세요</li>
+                        </ul>
+                        <p>코드의 각 단계를 출력하며 확인하는 습관은 모델 이해와 디버깅에 큰 도움이 됩니다.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <footer>
+            <p>출처: Andrej Karpathy의 "Building LLM from Scratch", "바닥부터 LLM 만들기" 책 (2023)</p>
+            <p>© 2025 LLM 구축 가이드</p>
+        </footer>
     </div>
 </body>
 </html>
