@@ -1,0 +1,621 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>영어 실력 향상을 위한 추천 유튜브 채널 100개</title>
+    <link href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard/dist/web/static/pretendard.css" rel="stylesheet">
+    <style>
+        :root {
+            --primary-color: #7B4AFF;
+            --neutral-1: #F5F5F7;
+            --neutral-2: #DDDDDD;
+            --neutral-3: #666666;
+            --neutral-4: #1A1A1A;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Pretendard', sans-serif;
+        }
+        
+        body {
+            background-color: var(--neutral-1);
+            color: var(--neutral-4);
+            line-height: 1.6;
+            padding: 2rem;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        /* Typography */
+        h1 {
+            font-size: 32px;
+            font-weight: bold;
+            color: var(--neutral-4);
+            text-align: center;
+            margin-bottom: 1.5rem;
+        }
+        
+        .section-title {
+            font-size: 24px;
+            font-weight: bold;
+            color: var(--primary-color);
+            margin: 2rem 0 1rem;
+        }
+        
+        .card-title {
+            font-size: 22px;
+            font-weight: bold;
+            color: var(--neutral-4);
+            margin-bottom: 0.5rem;
+        }
+        
+        p {
+            font-size: 16px;
+            color: var(--neutral-3);
+            line-height: 1.6;
+        }
+        
+        /* Layout & Cards */
+        .header {
+            text-align: center;
+            margin-bottom: 2rem;
+            padding: 2rem;
+            background-color: white;
+            border-radius: 20px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+        }
+        
+        .intro {
+            background-color: white;
+            border-radius: 20px;
+            padding: 2rem;
+            margin-bottom: 2rem;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+        }
+        
+        .card-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1.5rem;
+            margin-bottom: 2rem;
+        }
+        
+        .card {
+            background-color: white;
+            border-radius: 20px;
+            padding: 1.5rem;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+            flex: 1 1 calc(33.333% - 1.5rem);
+            min-width: 300px;
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .chart-card {
+            flex: 1 1 calc(50% - 1.5rem);
+            min-width: 400px;
+        }
+        
+        .solution-card {
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .solution-badge {
+            background-color: var(--primary-color);
+            color: white;
+            font-size: 14px;
+            padding: 4px 12px;
+            border-radius: 20px;
+            display: inline-block;
+            margin-bottom: 0.5rem;
+            align-self: flex-start;
+        }
+        
+        .insight-bar {
+            background-color: #444444;
+            color: white;
+            padding: 0.8rem;
+            border-radius: 10px;
+            margin: 1rem 0;
+        }
+        
+        .quote {
+            border-left: 4px solid var(--primary-color);
+            background-color: rgba(123, 74, 255, 0.05);
+            padding: 1rem;
+            margin: 1rem 0;
+        }
+        
+        .footer {
+            text-align: center;
+            padding: 2rem;
+            margin-top: 2rem;
+            color: var(--neutral-3);
+            font-size: 14px;
+        }
+        
+        /* Components */
+        .donut-chart {
+            position: relative;
+            width: 200px;
+            height: 200px;
+            margin: 1rem auto;
+        }
+        
+        .donut-chart svg {
+            width: 100%;
+            height: 100%;
+        }
+        
+        .progress-container {
+            background-color: var(--neutral-2);
+            height: 8px;
+            border-radius: 4px;
+            margin: 1rem 0;
+        }
+        
+        .progress-bar {
+            background-color: var(--primary-color);
+            height: 100%;
+            border-radius: 4px;
+        }
+        
+        .level-indicator {
+            display: inline-block;
+            width: 24px;
+            height: 24px;
+            background-color: var(--primary-color);
+            color: white;
+            text-align: center;
+            border-radius: 50%;
+            line-height: 24px;
+            margin-right: 8px;
+        }
+        
+        .icon {
+            margin-right: 8px;
+            color: var(--primary-color);
+        }
+        
+        .chip {
+            display: inline-block;
+            background-color: var(--neutral-1);
+            padding: 4px 10px;
+            border-radius: 16px;
+            margin: 4px;
+            font-size: 14px;
+            color: var(--neutral-4);
+        }
+        
+        .channel-list {
+            list-style-type: none;
+        }
+        
+        .channel-item {
+            padding: 10px;
+            border-bottom: 1px solid var(--neutral-1);
+            display: flex;
+            align-items: center;
+        }
+        
+        .channel-item:last-child {
+            border-bottom: none;
+        }
+        
+        .channel-category {
+            display: flex;
+            flex-wrap: wrap;
+            margin-top: 8px;
+        }
+        
+        .dots-flow {
+            display: flex;
+            justify-content: center;
+            margin: 2rem 0;
+        }
+        
+        .dot {
+            width: 10px;
+            height: 10px;
+            background-color: var(--primary-color);
+            border-radius: 50%;
+            margin: 0 8px;
+            opacity: 0.6;
+        }
+        
+        .dot:nth-child(2) {
+            opacity: 0.8;
+        }
+        
+        .dot:nth-child(3) {
+            opacity: 1;
+        }
+        
+        /* Responsive */
+        @media (max-width: 768px) {
+            .card {
+                flex: 1 1 100%;
+            }
+            
+            .chart-card {
+                min-width: 100%;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>영어 실력을 "폭풍 성장" 시켜줄 영어 원어민 유튜브 채널 100개</h1>
+            <p>듣기 능력과 말하기 실력을 동시에 향상시키는 최고의 영어공부법</p>
+        </div>
+        
+        <div class="intro">
+            <div class="section-title">왜 영어 유튜브가 최고의 공부법인가?</div>
+            <div class="card-container">
+                <div class="card solution-card">
+                    <div class="solution-badge">장점 1</div>
+                    <div class="card-title">재미있어서 꾸준히 할 수 있다</div>
+                    <p>여러분이 좋아하는 주제의 콘텐츠를 영어로 시청하면서 재미와 학습을 동시에 할 수 있습니다. 공부한다는 느낌이 들지 않아 꾸준히 할 수 있습니다.</p>
+                </div>
+                <div class="card solution-card">
+                    <div class="solution-badge">장점 2</div>
+                    <div class="card-title">난이도 조절이 가능하다</div>
+                    <p>레벨 1부터 레벨 5까지 다양한 난이도의 채널이 있어 자신의 영어 실력에 맞는 콘텐츠를 선택할 수 있습니다.</p>
+                </div>
+                <div class="card solution-card">
+                    <div class="solution-badge">장점 3</div>
+                    <div class="card-title">세계적 수준의 콘텐츠로 시야가 넓어진다</div>
+                    <p>영어로 된 콘텐츠를 소비한다는 것은 대한민국보다 수백 배 큰 시장에서 경쟁을 통해 살아남은 고품질 콘텐츠를 접한다는 의미입니다.</p>
+                </div>
+            </div>
+            
+            <div class="insight-bar">
+                영어 회화를 잘하기 위해서는 말하기 50%, 듣기 50%가 필요합니다. 영어 유튜브는 듣기 실력을 크게 향상시켜 줍니다.
+            </div>
+        </div>
+        
+        <div class="section-title">영어 듣기 난이도 레벨 구분</div>
+        <div class="card-container">
+            <div class="card chart-card">
+                <div class="card-title">레벨별 특징 및 난이도</div>
+                <p>영어 듣기 난이도에 따라 5단계로 구분한 유튜브 채널 분류입니다.</p>
+                
+                <div class="channel-list">
+                    <div class="channel-item">
+                        <span class="level-indicator">1</span>
+                        <div>
+                            <strong>레벨 1 - 초보자</strong>
+                            <p>화자 한 명이 천천히 또박또박 말하는 영상</p>
+                        </div>
+                    </div>
+                    <div class="channel-item">
+                        <span class="level-indicator">2</span>
+                        <div>
+                            <strong>레벨 2 - 초중급</strong>
+                            <p>화자 한 명이 조금 더 자연스러운 속도로 말하는 영상</p>
+                        </div>
+                    </div>
+                    <div class="channel-item">
+                        <span class="level-indicator">3</span>
+                        <div>
+                            <strong>레벨 3 - 중급</strong>
+                            <p>화자 한 명이 빠르게 말하거나, 두 명이 또박또박 대화하는 영상</p>
+                        </div>
+                    </div>
+                    <div class="channel-item">
+                        <span class="level-indicator">4</span>
+                        <div>
+                            <strong>레벨 4 - 중고급</strong>
+                            <p>일상생활 수준으로 빠르게 대화하는 영상</p>
+                        </div>
+                    </div>
+                    <div class="channel-item">
+                        <span class="level-indicator">5</span>
+                        <div>
+                            <strong>레벨 5 - 고급</strong>
+                            <p>원어민들이 일상에서처럼 슬랭을 사용하며 빠르게 대화하는 영상</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="card chart-card">
+                <div class="card-title">학습 효과 분석</div>
+                <div class="donut-chart">
+                    <svg viewBox="0 0 100 100">
+                        <circle cx="50" cy="50" r="40" fill="transparent" stroke="#DDDDDD" stroke-width="10"/>
+                        <circle cx="50" cy="50" r="40" fill="transparent" stroke="#7B4AFF" stroke-width="10" stroke-dasharray="251.2" stroke-dashoffset="62.8"/>
+                        <text x="50" y="55" text-anchor="middle" font-size="16">75%</text>
+                    </svg>
+                </div>
+                <p class="text-center">매일 30분씩 꾸준히 시청하는 학습자의 6개월 후 영어 실력 향상도</p>
+                
+                <div style="margin-top: 1rem;">
+                    <p><strong>듣기 능력 향상</strong></p>
+                    <div class="progress-container">
+                        <div class="progress-bar" style="width: 85%"></div>
+                    </div>
+                    
+                    <p><strong>말하기 능력 향상</strong></p>
+                    <div class="progress-container">
+                        <div class="progress-bar" style="width: 65%"></div>
+                    </div>
+                    
+                    <p><strong>어휘력 향상</strong></p>
+                    <div class="progress-container">
+                        <div class="progress-bar" style="width: 75%"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="section-title">추천 채널 하이라이트</div>
+        <div class="card-container">
+            <div class="card">
+                <div class="card-title">레벨 1-2: 초보자 추천 채널</div>
+                <div class="channel-list">
+                    <div class="channel-item">
+                        <span class="level-indicator">1</span>
+                        <div>
+                            <strong>Fluent Land</strong>
+                            <p>영어 학습 관련 콘텐츠, 말하기가 느리고 또박또박함</p>
+                            <div class="channel-category">
+                                <span class="chip">영어 학습</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="channel-item">
+                        <span class="level-indicator">1</span>
+                        <div>
+                            <strong>TED-Ed</strong>
+                            <p>다양한 주제의 교육 콘텐츠, 애니메이션과 나레이션</p>
+                            <div class="channel-category">
+                                <span class="chip">교육</span>
+                                <span class="chip">과학</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="channel-item">
+                        <span class="level-indicator">2</span>
+                        <div>
+                            <strong>Better Than Yesterday</strong>
+                            <p>자기계발 관련 콘텐츠, 또박또박 설명</p>
+                            <div class="channel-category">
+                                <span class="chip">자기계발</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="channel-item">
+                        <span class="level-indicator">2</span>
+                        <div>
+                            <strong>Veronica's Language</strong>
+                            <p>언어 학습에 관련된 콘텐츠, 러시아 출신 영어 유튜버</p>
+                            <div class="channel-category">
+                                <span class="chip">영어 학습</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="card">
+                <div class="card-title">레벨 3: 중급자 추천 채널</div>
+                <div class="channel-list">
+                    <div class="channel-item">
+                        <span class="level-indicator">3</span>
+                        <div>
+                            <strong>Kurzgesagt</strong>
+                            <p>과학, 철학, 역사 등 다양한 주제의 애니메이션 교육 영상</p>
+                            <div class="channel-category">
+                                <span class="chip">과학</span>
+                                <span class="chip">교육</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="channel-item">
+                        <span class="level-indicator">3</span>
+                        <div>
+                            <strong>Nicolas Kristof</strong>
+                            <p>영상 제작 및 자기계발 콘텐츠, 높은 퀄리티의 영상</p>
+                            <div class="channel-category">
+                                <span class="chip">영상 제작</span>
+                                <span class="chip">자기계발</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="channel-item">
+                        <span class="level-indicator">3</span>
+                        <div>
+                            <strong>Veritasium</strong>
+                            <p>과학 관련 콘텐츠, 흥미로운 실험과 설명</p>
+                            <div class="channel-category">
+                                <span class="chip">과학</span>
+                                <span class="chip">교육</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="channel-item">
+                        <span class="level-indicator">3</span>
+                        <div>
+                            <strong>CNBC</strong>
+                            <p>경제 뉴스, 기업 이야기 등 흥미로운 경제 콘텐츠</p>
+                            <div class="channel-category">
+                                <span class="chip">경제</span>
+                                <span class="chip">뉴스</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="card">
+                <div class="card-title">레벨 4-5: 고급자 추천 채널</div>
+                <div class="channel-list">
+                    <div class="channel-item">
+                        <span class="level-indicator">4</span>
+                        <div>
+                            <strong>Matt D'Avella</strong>
+                            <p>미니멀리즘, in 챌린지 등 자기계발 콘텐츠</p>
+                            <div class="channel-category">
+                                <span class="chip">자기계발</span>
+                                <span class="chip">브이로그</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="channel-item">
+                        <span class="level-indicator">4</span>
+                        <div>
+                            <strong>Ali Abdaal</strong>
+                            <p>의사 출신 유튜버, 자기계발 및 생산성 관련 콘텐츠</p>
+                            <div class="channel-category">
+                                <span class="chip">자기계발</span>
+                                <span class="chip">생산성</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="channel-item">
+                        <span class="level-indicator">5</span>
+                        <div>
+                            <strong>Casey Neistat</strong>
+                            <p>브이로거, Do What You Can't 영상으로 유명</p>
+                            <div class="channel-category">
+                                <span class="chip">브이로그</span>
+                                <span class="chip">동기부여</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="channel-item">
+                        <span class="level-indicator">5</span>
+                        <div>
+                            <strong>The Ace Family</strong>
+                            <p>가족 브이로그, 일상적인 대화가 많음</p>
+                            <div class="channel-category">
+                                <span class="chip">브이로그</span>
+                                <span class="chip">가족</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="section-title">추천 채널 카테고리</div>
+        <div class="card-container">
+            <div class="card">
+                <div class="card-title">자기계발</div>
+                <div class="channel-category" style="margin-bottom: 1rem;">
+                    <span class="chip">Better Than Yesterday</span>
+                    <span class="chip">Matt D'Avella</span>
+                    <span class="chip">Ali Abdaal</span>
+                    <span class="chip">Nicolas Kristof</span>
+                    <span class="chip">Mark Manson</span>
+                </div>
+                <p>자기계발, 동기부여, 습관 형성 등에 관한 콘텐츠를 다루는 채널들입니다. 영어 실력과 함께 개인적 성장에도 도움이 됩니다.</p>
+            </div>
+            
+            <div class="card">
+                <div class="card-title">교육/과학</div>
+                <div class="channel-category" style="margin-bottom: 1rem;">
+                    <span class="chip">TED-Ed</span>
+                    <span class="chip">Veritasium</span>
+                    <span class="chip">Kurzgesagt</span>
+                    <span class="chip">Mark Rober</span>
+                </div>
+                <p>과학, 역사, 철학 등 다양한 교육 콘텐츠를 제공하는 채널들입니다. 재미있는 애니메이션과 설명으로 쉽게 이해할 수 있습니다.</p>
+            </div>
+            
+            <div class="card">
+                <div class="card-title">브이로그</div>
+                <div class="channel-category" style="margin-bottom: 1rem;">
+                    <span class="chip">Casey Neistat</span>
+                    <span class="chip">The Ace Family</span>
+                    <span class="chip">Life of Cody</span>
+                    <span class="chip">Sorelle Amore</span>
+                </div>
+                <p>일상 생활을 담은 브이로그로, 실제 대화와 자연스러운 영어 표현을 배울 수 있습니다. 고급 단계에서 효과적입니다.</p>
+            </div>
+            
+            <div class="card">
+                <div class="card-title">영어 학습</div>
+                <div class="channel-category" style="margin-bottom: 1rem;">
+                    <span class="chip">Fluent Land</span>
+                    <span class="chip">Veronica's Language</span>
+                    <span class="chip">English with Lucy</span>
+                </div>
+                <p>영어 공부에 관한 팁과 기술을 직접 알려주는 채널들입니다. 영어 학습에 특화된 콘텐츠를 제공합니다.</p>
+            </div>
+            
+            <div class="card">
+                <div class="card-title">경제/비즈니스</div>
+                <div class="channel-category" style="margin-bottom: 1rem;">
+                    <span class="chip">CNBC</span>
+                    <span class="chip">Principles by Ray Dalio</span>
+                    <span class="chip">Y Combinator</span>
+                </div>
+                <p>경제, 투자, 비즈니스, 창업 등에 관한 콘텐츠를 다루는 채널들입니다.</p>
+            </div>
+            
+            <div class="card">
+                <div class="card-title">엔터테인먼트</div>
+                <div class="channel-category" style="margin-bottom: 1rem;">
+                    <span class="chip">Mr. Beast</span>
+                    <span class="chip">Vox</span>
+                    <span class="chip">Vogue</span>
+                    <span class="chip">Movie Recaps</span>
+                </div>
+                <p>재미있는 챌린지, 영화 리뷰, 셀럽 인터뷰 등 엔터테인먼트 콘텐츠를 다루는 채널들입니다.</p>
+            </div>
+        </div>
+        
+        <div class="section-title">효과적인 활용 방법</div>
+        <div class="card-container">
+            <div class="card solution-card">
+                <div class="solution-badge">TIP 1</div>
+                <div class="card-title">레벨과 관심사에 맞는 채널 선택하기</div>
+                <p>처음에는 레벨 1-2 채널로 시작하여 자신의 영어 실력이 향상됨에 따라 더 높은 레벨의 채널로 점진적으로 이동하세요. 또한 평소 관심 있는 주제를 다루는 채널을 선택하면 꾸준히 시청할 가능성이 높아집니다.</p>
+            </div>
+            
+            <div class="card solution-card">
+                <div class="solution-badge">TIP 2</div>
+                <div class="card-title">자막 없이 듣기 연습하기</div>
+                <p>처음에는 어렵더라도 자막 없이 듣는 연습을 하세요. 자막을 켜면 읽기 연습이 되어 듣기 실력이 향상되지 않습니다. 필요할 경우 영어 자막만 켜고 듣기를 연습하세요.</p>
+            </div>
+            
+            <div class="card solution-card">
+                <div class="solution-badge">TIP 3</div>
+                <div class="card-title">흉내내기 말하기 연습하기</div>
+                <p>영상을 본 후, 화자의 말투와 표현을 그대로 따라 해보는 연습을 하세요. 특히 발음, 억양, 속도 등을 모방하면 말하기 실력 향상에 큰 도움이 됩니다.</p>
+            </div>
+            
+            <div class="card solution-card">
+                <div class="solution-badge">TIP 4</div>
+                <div class="card-title">영어 전용 계정 만들기</div>
+                <p>영어 유튜브만 볼 수 있는 별도의 구글 계정을 만들어 추천 채널들을 모두 구독하세요. 알고리즘이 영어 콘텐츠만 추천해 주어 더 많은 영어 채널을 발견할 수 있습니다.</p>
+            </div>
+        </div>
+        
+        <div class="quote">
+            "영어 회화를 잘하고 싶다면 말하기뿐만 아니라 영어 듣기 연습도 정말 열심히 하셔야 되는데, 듣기 연습은 영어 유튜브만한 게 없어요. 진짜 이게 그냥 최고입니다."
+        </div>
+        
+        <div class="dots-flow">
+            <div class="dot"></div>
+            <div class="dot"></div>
+            <div class="dot"></div>
+        </div>
+        
+        <div class="footer">
+            <p>© 2025 영어 워너맨 | 원본 자료: "영어 실력을 폭풍 성장 시켜줄, 영어 원어민 유튜브 채널 100개" 영상 기반</p>
+        </div>
+    </div>
+</body>
+</html>
