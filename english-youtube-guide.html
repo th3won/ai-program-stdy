@@ -451,6 +451,241 @@
             color: var(--neutral-3);
         }
         
+        .category-filter {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-bottom: 30px;
+        }
+        
+        .category-tag {
+            background-color: white;
+            border: 1px solid var(--neutral-2);
+            border-radius: 20px;
+            padding: 8px 16px;
+            font-size: 14px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .category-tag:hover,
+        .category-tag.active {
+            background-color: var(--primary-color);
+            color: white;
+            border-color: var(--primary-color);
+        }
+        
+        .steps-container {
+            position: relative;
+            padding-left: 40px;
+            margin-bottom: 40px;
+        }
+        
+        .step-line {
+            position: absolute;
+            left: 10px;
+            top: 0;
+            bottom: 0;
+            width: 2px;
+            background-color: var(--primary-color);
+        }
+        
+        .step {
+            position: relative;
+            margin-bottom: 30px;
+        }
+        
+        .step:last-child {
+            margin-bottom: 0;
+        }
+        
+        .step-number {
+            position: absolute;
+            left: -40px;
+            top: 0;
+            width: 24px;
+            height: 24px;
+            background-color: var(--primary-color);
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            font-size: 14px;
+        }
+        
+        .step-title {
+            font-size: 18px;
+            font-weight: 700;
+            margin-bottom: 10px;
+        }
+        
+        .step-content {
+            font-size: 16px;
+            color: var(--neutral-3);
+        }
+        
+        .two-columns {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 30px;
+            margin-bottom: 40px;
+        }
+        
+        .column {
+            flex: 1 1 400px;
+        }
+        
+        .dropdown-select {
+            width: 100%;
+            padding: 12px 15px;
+            border-radius: 10px;
+            border: 1px solid var(--neutral-2);
+            background-color: white;
+            font-size: 16px;
+            color: var(--neutral-4);
+            margin-bottom: 20px;
+            appearance: none;
+            -webkit-appearance: none;
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24' fill='none' stroke='%237B4AFF' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='6 9 12 15 18 9'%3E%3C/polyline%3E%3C/svg%3E");
+            background-repeat: no-repeat;
+            background-position: right 15px center;
+            background-size: 16px;
+        }
+        
+        .image-container {
+            background-color: white;
+            border-radius: var(--card-radius);
+            overflow: hidden;
+            margin-bottom: 30px;
+            box-shadow: var(--card-shadow);
+        }
+        
+        .image-container img {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+        
+        .category-icons {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+            gap: 20px;
+            margin-bottom: 40px;
+        }
+        
+        .category-icon {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+            padding: 20px;
+            background-color: white;
+            border-radius: var(--card-radius);
+            box-shadow: var(--card-shadow);
+            transition: transform 0.3s ease;
+        }
+        
+        .category-icon:hover {
+            transform: translateY(-5px);
+        }
+        
+        .category-icon-img {
+            width: 50px;
+            height: 50px;
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background-color: rgba(123, 74, 255, 0.1);
+            border-radius: 50%;
+        }
+        
+        .category-icon-img svg {
+            width: 25px;
+            height: 25px;
+            fill: var(--primary-color);
+        }
+        
+        .category-icon-title {
+            font-size: 16px;
+            font-weight: 700;
+            color: var(--neutral-4);
+        }
+        
+        .feature-section {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 30px;
+            margin-bottom: 50px;
+        }
+        
+        .feature-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 15px;
+            flex: 1 1 250px;
+        }
+        
+        .feature-icon {
+            width: 40px;
+            height: 40px;
+            background-color: rgba(123, 74, 255, 0.1);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+        }
+        
+        .feature-icon svg {
+            width: 20px;
+            height: 20px;
+            fill: var(--primary-color);
+        }
+        
+        .feature-content {
+            flex: 1;
+        }
+        
+        .feature-title {
+            font-size: 18px;
+            font-weight: 700;
+            margin-bottom: 8px;
+            color: var(--neutral-4);
+        }
+        
+        .feature-description {
+            font-size: 14px;
+            color: var(--neutral-3);
+        }
+        
+        .recommendations-tab {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-bottom: 30px;
+            border-bottom: 1px solid var(--neutral-2);
+            padding-bottom: 10px;
+        }
+        
+        .tab-item {
+            padding: 10px 20px;
+            font-size: 16px;
+            font-weight: 500;
+            color: var(--neutral-3);
+            cursor: pointer;
+            border-radius: 5px 5px 0 0;
+            transition: all 0.3s ease;
+        }
+        
+        .tab-item:hover,
+        .tab-item.active {
+            color: var(--primary-color);
+            background-color: rgba(123, 74, 255, 0.1);
+        }
+        
         @media (max-width: 768px) {
             .card {
                 flex: 1 1 100%;
@@ -459,6 +694,10 @@
             
             .chart-container {
                 flex-direction: column;
+            }
+            
+            .feature-item {
+                flex: 1 1 100%;
             }
         }
     </style>
@@ -471,6 +710,33 @@
     
     <div class="intro-text">
         <p>이 가이드는 영어 실력 향상을 위한 최고의 방법인 영어 유튜브 채널을 레벨별, 주제별로 정리했습니다. 왕초보부터 고급 레벨까지, 다양한 관심사를 가진 모든 사람이 즐겁게 영어를 학습할 수 있도록 제작되었습니다.</p>
+    </div>
+    
+    <div class="chart-card">
+        <div class="chart-title">영어 회화의 비밀</div>
+        <div class="chart-container">
+            <div class="donut-chart">
+                <div class="donut-segment" style="background-color: var(--primary-color); transform: rotate(0deg);"></div>
+                <div class="donut-segment clip-auto" style="background-color: var(--neutral-2); transform: rotate(180deg);"></div>
+                <div class="donut-hole">
+                    <div class="donut-percent">50%</div>
+                    <div class="donut-label">듣기</div>
+                </div>
+            </div>
+            
+            <div class="donut-chart">
+                <div class="donut-segment" style="background-color: var(--primary-color); transform: rotate(0deg);"></div>
+                <div class="donut-segment clip-auto" style="background-color: var(--neutral-2); transform: rotate(180deg);"></div>
+                <div class="donut-hole">
+                    <div class="donut-percent">50%</div>
+                    <div class="donut-label">말하기</div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="highlight-box">
+            <p>"회화라는 건 곧 대화인데 대화는 말하는 거 50%, 그리고 듣는 거 50%예요. 내가 아무리 영어로 말을 잘해봤자 상대방이 영어로 말하는 거 하나도 못 알아들으면 대화가 성립이 안 됩니다."</p>
+        </div>
     </div>
     
     <h2>왜 영어 유튜브가 최고의 학습법인가?</h2>
@@ -495,6 +761,47 @@
             <div class="highlight-box">
                 <p>"영어 유튜브를 볼 수 있는 능력을 갖게 된다는 건 세상을 새로운 시각으로 볼 수 있는 안경을 갖게 되는 것과 같습니다."</p>
             </div>
+        </div>
+    </div>
+    
+    <div class="insight-bar">
+        영어 유튜브는 난이도 조절이 가능하고 재미있어서 꾸준히 할 수 있기 때문에 최고의 영어 공부법이며, 동시에 한글로 된 영상들보다 더 다양하고 퀄리티 높은 콘텐츠를 즐길 수 있습니다.
+    </div>
+    
+    <h2>유튜브 채널 난이도 레벨 설명</h2>
+    
+    <div class="card-container">
+        <div class="card">
+            <div class="level-badge">Level 1</div>
+            <div class="card-title">초보자용 (가장 쉬움)</div>
+            <p>영상 속 화자가 한 명이고 매우 천천히, 또박또박 말합니다. 영어를 처음 접하는 사람도 이해할 수 있는 수준입니다.</p>
+            <div class="highlight-box">
+                <p>예시: "This is an example of Japan's YouTube channel."</p>
+            </div>
+        </div>
+        
+        <div class="card">
+            <div class="level-badge">Level 2</div>
+            <div class="card-title">초중급자용</div>
+            <p>영상 속 화자가 한 명이지만 조금 더 자연스러운 속도로 말합니다. 기본적인 영어 듣기 능력이 있다면 따라갈 수 있습니다.</p>
+        </div>
+        
+        <div class="card">
+            <div class="level-badge">Level 3</div>
+            <div class="card-title">중급자용</div>
+            <p>화자가 한 명일 경우 빠르게 말하거나, 화자가 두 명일 경우 또박또박 말합니다. 일상 회화 수준의 듣기 능력이 필요합니다.</p>
+        </div>
+        
+        <div class="card">
+            <div class="level-badge">Level 4</div>
+            <div class="card-title">중고급자용</div>
+            <p>일상 대화 수준으로 빠르게 말하고, 발음이 항상 또박또박하지는 않습니다. 실제 대화에 가까운 수준입니다.</p>
+        </div>
+        
+        <div class="card">
+            <div class="level-badge">Level 5</div>
+            <div class="card-title">고급자용 (가장 어려움)</div>
+            <p>원어민들이 서로 일상적으로 대화하듯 매우 빠르게 말하며, 슬랭과 구어체 표현이 많이 등장합니다. 원어민 수준의 듣기 능력이 필요합니다.</p>
         </div>
     </div>
     
@@ -546,45 +853,92 @@
         </div>
     </div>
     
-    <div class="insight-bar">
-        영어 회화는 듣기 50%, 말하기 50%로 구성됩니다. 듣기 능력이 부족하면 대화 자체가 성립되지 않습니다.
+    <h2>주제별 유튜브 채널 카테고리</h2>
+    
+    <div class="category-icons">
+        <div class="category-icon">
+            <div class="category-icon-img">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                    <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8zm-5-9h10v2H7z"/>
+                </svg>
+            </div>
+            <div class="category-icon-title">자기개발</div>
+        </div>
+        
+        <div class="category-icon">
+            <div class="category-icon-img">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                    <path d="M17 10.5V7c0-.55-.45-1-1-1H4c-.55 0-1 .45-1 1v10c0 .55.45 1 1 1h12c.55 0 1-.45 1-1v-3.5l4 4v-11l-4 4z"/>
+                </svg>
+            </div>
+            <div class="category-icon-title">브이로그</div>
+        </div>
+        
+        <div class="category-icon">
+            <div class="category-icon-img">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                    <path d="M19.14 12.94c.04-.3.06-.61.06-.94 0-.32-.02-.64-.07-.94l2.03-1.58c.18-.14.23-.41.12-.61l-1.92-3.32c-.12-.22-.37-.29-.59-.22l-2.39.96c-.5-.38-1.03-.7-1.62-.94l-.36-2.54c-.04-.24-.24-.41-.48-.41h-3.84c-.24 0-.43.17-.47.41l-.36 2.54c-.59.24-1.13.57-1.62.94l-2.39-.96c-.22-.08-.47 0-.59.22L2.74 8.87c-.12.21-.08.47.12.61l2.03 1.58c-.05.3-.09.63-.09.94s.02.64.07.94l-2.03 1.58c-.18.14-.23.41-.12.61l1.92 3.32c.12.22.37.29.59.22l2.39-.96c.5.38 1.03.7 1.62.94l.36 2.54c.05.24.24.41.48.41h3.84c.24 0 .44-.17.47-.41l.36-2.54c.59-.24 1.13-.56 1.62-.94l2.39.96c.22.08.47 0 .59-.22l1.92-3.32c.12-.22.07-.47-.12-.61l-2.01-1.58zM12 15.6c-1.98 0-3.6-1.62-3.6-3.6s1.62-3.6 3.6-3.6 3.6 1.62 3.6 3.6-1.62 3.6-3.6 3.6z"/>
+                </svg>
+            </div>
+            <div class="category-icon-title">과학</div>
+        </div>
+        
+        <div class="category-icon">
+            <div class="category-icon-img">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                    <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 17.93c-3.95-.49-7-3.85-7-7.93 0-.62.08-1.21.21-1.79L9 15v1c0 1.1.9 2 2 2v1.93zm6.9-2.54c-.26-.81-1-1.39-1.9-1.39h-1v-3c0-.55-.45-1-1-1H8v-2h2c.55 0 1-.45 1-1V7h2c1.1 0 2-.9 2-2v-.41c2.93 1.19 5 4.06 5 7.41 0 2.08-.8 3.97-2.1 5.39z"/>
+                </svg>
+            </div>
+            <div class="category-icon-title">뉴스</div>
+        </div>
+        
+        <div class="category-icon">
+            <div class="category-icon-img">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                    <path d="M20 3H4c-1.1 0-2 .9-2 2v11c0 1.1.9 2 2 2h3l-1 1v2h12v-2l-1-1h3c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm0 13H4V5h16v11z"/>
+                </svg>
+            </div>
+            <div class="category-icon-title">기술</div>
+        </div>
+        
+        <div class="category-icon">
+            <div class="category-icon-img">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                    <path d="M21 3H3c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h5v2h8v-2h5c1.1 0 1.99-.9 1.99-2L22 5c0-1.1-.9-2-2-2zm0 14H3V5h18v12z"/>
+                </svg>
+            </div>
+            <div class="category-icon-title">영화/엔터</div>
+        </div>
+        
+        <div class="category-icon">
+            <div class="category-icon-img">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                    <path d="M7 15h14v2H7v-2zm0-6h14v2H7V9zm0-6h14v2H7V3zM3 3v2h2V3H3zm0 6v2h2V9H3zm0 6v2h2v-2H3z"/>
+                </svg>
+            </div>
+            <div class="category-icon-title">비즈니스</div>
+        </div>
+        
+        <div class="category-icon">
+            <div class="category-icon-img">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                    <path d="M18 2H6c-1.1 0-2 .9-2 2v16c0 1.1.9 2 2 2h12c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2zM6 4h5v8l-2.5-1.5L6 12V4zm0 15l3-3h2l3 3H6z"/>
+                </svg>
+            </div>
+            <div class="category-icon-title">교육</div>
+        </div>
     </div>
     
-    <h2>유튜브 채널 난이도 레벨 설명</h2>
-    
-    <div class="card-container">
-        <div class="card">
-            <div class="level-badge">Level 1</div>
-            <div class="card-title">초보자용 (가장 쉬움)</div>
-            <p>영상 속 화자가 한 명이고 매우 천천히, 또박또박 말합니다. 영어를 처음 접하는 사람도 이해할 수 있는 수준입니다.</p>
-        </div>
-        
-        <div class="card">
-            <div class="level-badge">Level 2</div>
-            <div class="card-title">초중급자용</div>
-            <p>영상 속 화자가 한 명이지만 조금 더 자연스러운 속도로 말합니다. 기본적인 영어 듣기 능력이 있다면 따라갈 수 있습니다.</p>
-        </div>
-        
-        <div class="card">
-            <div class="level-badge">Level 3</div>
-            <div class="card-title">중급자용</div>
-            <p>화자가 한 명일 경우 빠르게 말하거나, 화자가 두 명일 경우 또박또박 말합니다. 일상 회화 수준의 듣기 능력이 필요합니다.</p>
-        </div>
-        
-        <div class="card">
-            <div class="level-badge">Level 4</div>
-            <div class="card-title">중고급자용</div>
-            <p>일상 대화 수준으로 빠르게 말하고, 발음이 항상 또박또박하지는 않습니다. 실제 대화에 가까운 수준입니다.</p>
-        </div>
-        
-        <div class="card">
-            <div class="level-badge">Level 5</div>
-            <div class="card-title">고급자용 (가장 어려움)</div>
-            <p>원어민들이 서로 일상적으로 대화하듯 매우 빠르게 말하며, 슬랭과 구어체 표현이 많이 등장합니다. 원어민 수준의 듣기 능력이 필요합니다.</p>
-        </div>
+    <div class="recommendations-tab">
+        <div class="tab-item active">인기 추천</div>
+        <div class="tab-item">자기개발</div>
+        <div class="tab-item">과학/교육</div>
+        <div class="tab-item">브이로그</div>
+        <div class="tab-item">비즈니스</div>
+        <div class="tab-item">언어학습</div>
     </div>
     
-    <h2>추천 영어 유튜브 채널 TOP 10</h2>
+    <h2>추천 영어 유튜브 채널 TOP 20</h2>
     
     <div class="channel-grid">
         <div class="channel-card">
@@ -786,66 +1140,277 @@
                 </div>
             </div>
         </div>
+        
+        <div class="channel-card">
+            <div class="channel-header">
+                <div class="channel-icon">PL</div>
+                <div>
+                    <div class="channel-name">Fluent Land</div>
+                    <div class="channel-category">영어학습</div>
+                </div>
+            </div>
+            <div class="channel-description">
+                영어와 관련된 콘텐츠를 다루는 채널로, 특히 "How to improve Your english speaking skills by yourself" 영상이 유명합니다. 흉내내기 공부법을 활용하기 좋은 채널입니다.
+            </div>
+            <div class="channel-footer">
+                <div class="difficulty-label">
+                    난이도
+                    <div class="difficulty-dots">
+                        <div class="dot filled"></div>
+                        <div class="dot"></div>
+                        <div class="dot"></div>
+                        <div class="dot"></div>
+                        <div class="dot"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="channel-card">
+            <div class="channel-header">
+                <div class="channel-icon">MR</div>
+                <div>
+                    <div class="channel-name">MrBeast</div>
+                    <div class="channel-category">엔터테인먼트</div>
+                </div>
+            </div>
+            <div class="channel-description">
+                구독자 3억 6천만 명의 세계 1위 유튜버로, 대규모 예산의 스케일이 큰 영상을 제작합니다. 영어 듣기는 빠른 편이지만 한글 더빙도 제공되어 콘텐츠 자체를 즐기기 좋습니다.
+            </div>
+            <div class="channel-footer">
+                <div class="difficulty-label">
+                    난이도
+                    <div class="difficulty-dots">
+                        <div class="dot filled"></div>
+                        <div class="dot filled"></div>
+                        <div class="dot filled"></div>
+                        <div class="dot filled"></div>
+                        <div class="dot"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="channel-card">
+            <div class="channel-header">
+                <div class="channel-icon">AA</div>
+                <div>
+                    <div class="channel-name">Ali Abdaal</div>
+                    <div class="channel-category">자기개발 / 생산성</div>
+                </div>
+            </div>
+            <div class="channel-description">
+                옥스포드 의대를 졸업하고 의사로 일하다가 전업 유튜버이자 사업가로 활동하고 있습니다. 온라인 비즈니스, 부업, 자기개발 등의 콘텐츠를 다루지만, 말하는 속도가 매우 빠른 편입니다.
+            </div>
+            <div class="channel-footer">
+                <div class="difficulty-label">
+                    난이도
+                    <div class="difficulty-dots">
+                        <div class="dot filled"></div>
+                        <div class="dot filled"></div>
+                        <div class="dot filled"></div>
+                        <div class="dot filled"></div>
+                        <div class="dot filled"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="channel-card">
+            <div class="channel-header">
+                <div class="channel-icon">MM</div>
+                <div>
+                    <div class="channel-name">Mark Manson</div>
+                    <div class="channel-category">자기개발 / 심리</div>
+                </div>
+            </div>
+            <div class="channel-description">
+                베스트셀러 "신경 끄기 기술(The Subtle Art of Not Giving a F*ck)"의 저자입니다. 자기개발 및 심리학적 주제를 다루며, "Why South Korea became the most suicidal country in the world" 등 한국에 관한 영상도 있습니다.
+            </div>
+            <div class="channel-footer">
+                <div class="difficulty-label">
+                    난이도
+                    <div class="difficulty-dots">
+                        <div class="dot filled"></div>
+                        <div class="dot filled"></div>
+                        <div class="dot filled"></div>
+                        <div class="dot"></div>
+                        <div class="dot"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
     
     <div class="connect-line"></div>
     
-    <h2>영어 유튜브 최대 활용법</h2>
+    <h2>영어 유튜브 채널 문서 받고 활용하는 법</h2>
     
-    <div class="solution-card">
-        <div class="solution-icon">
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
-                <path d="M12 22C6.477 22 2 17.523 2 12S6.477 2 12 2s10 4.477 10 10-4.477 10-10 10zm0-2a8 8 0 1 0 0-16 8 8 0 0 0 0 16zm-1-5h2v2h-2v-2zm0-8h2v6h-2V7z"/>
-            </svg>
+    <div class="steps-container">
+        <div class="step-line"></div>
+        
+        <div class="step">
+            <div class="step-number">1</div>
+            <div class="step-title">영어 유튜브 채널 목록 받기</div>
+            <div class="step-content">영상 설명란에 있는 링크를 클릭하고, 이름과 이메일 주소를 입력하면 100개의 영어 유튜브 채널을 정리한 문서를 받을 수 있습니다.</div>
         </div>
-        <div class="solution-content">
-            <div class="solution-badge">TIP 1</div>
-            <div class="solution-title">영어 전용 계정 만들기</div>
-            <p>기존 한국어 유튜브 계정과 별도로 영어 유튜브만 볼 구글 계정을 새로 만들어 채널들을 구독하세요. 영어 콘텐츠만 접할 수 있는 환경을 만드는 것이 중요합니다.</p>
+        
+        <div class="step">
+            <div class="step-number">2</div>
+            <div class="step-title">영어 전용 구글 계정 만들기</div>
+            <div class="step-content">한국어 유튜브와 별도로 영어 유튜브만 시청할 수 있는 구글 계정을 새로 만들어 영어 콘텐츠에만 집중할 수 있는 환경을 조성하세요.</div>
+        </div>
+        
+        <div class="step">
+            <div class="step-number">3</div>
+            <div class="step-title">관심사와 레벨에 맞는 채널 필터링하기</div>
+            <div class="step-content">제공된 문서에서 레벨과 카테고리 필터를 사용해 본인의 영어 실력과 관심사에 맞는 채널을 찾아보세요. 레벨 1-2부터 시작해 점차 난이도를 높여가는 것이 좋습니다.</div>
+        </div>
+        
+        <div class="step">
+            <div class="step-number">4</div>
+            <div class="step-title">효율적으로 채널 구독하기</div>
+            <div class="step-content">Ctrl(Windows) 또는 Command(Mac) 키를 누른 상태에서 링크를 클릭하면 새 탭에서 열리므로, 문서 페이지를 유지한 채 여러 채널을 빠르게 구독할 수 있습니다.</div>
+        </div>
+        
+        <div class="step">
+            <div class="step-number">5</div>
+            <div class="step-title">자막 없이 듣는 연습하기</div>
+            <div class="step-content">자막을 켜면 듣기가 아닌 읽기 연습이 됩니다. 처음에는 어렵더라도 자막 없이 듣는 연습을 하고, 필요하다면 처음에만 한글 자막을 켜고 점차 영어 자막, 그 후에는 자막 없이 시청하는 방식으로 발전시키세요.</div>
         </div>
     </div>
     
-    <div class="solution-card">
-        <div class="solution-icon">
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
-                <path d="M21 3v18a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V3a1 1 0 0 1 1-1h16a1 1 0 0 1 1 1zm-2 1H5v16h14V4zm-3 5h-8v2h8V9zm0 4h-8v2h8v-2z"/>
-            </svg>
+    <div class="two-columns">
+        <div class="column">
+            <h2>문서 활용 팁</h2>
+            <div class="image-container">
+                <img src="/api/placeholder/600/300" alt="문서 활용 예시">
+            </div>
+            <p>문서는 엑셀과 같은 형식으로 정리되어 있어 다양한 방식으로 필터링이 가능합니다:</p>
+            <ul>
+                <li style="margin-bottom: 10px; color: var(--neutral-3);">레벨별 정렬: 드롭다운 메뉴에서 '레벨' 선택 후 오름차순 정렬</li>
+                <li style="margin-bottom: 10px; color: var(--neutral-3);">카테고리 필터: 여러 카테고리를 동시에 선택하여 관심 있는 주제의 채널만 표시</li>
+                <li style="margin-bottom: 10px; color: var(--neutral-3);">설명 검색: 키워드로 검색하여 특정 내용이 포함된 채널 찾기</li>
+            </ul>
+            
+            <div class="dropdown-select">
+                <option>레벨 1 - 초보자 (가장 쉬움)</option>
+                <option>레벨 2 - 초중급자</option>
+                <option>레벨 3 - 중급자</option>
+                <option>레벨 4 - 중고급자</option>
+                <option>레벨 5 - 고급자 (가장 어려움)</option>
+            </div>
+            
+            <div class="category-filter">
+                <div class="category-tag active">전체</div>
+                <div class="category-tag">자기개발</div>
+                <div class="category-tag">브이로그</div>
+                <div class="category-tag">과학</div>
+                <div class="category-tag">뉴스</div>
+                <div class="category-tag">영어학습</div>
+                <div class="category-tag">비즈니스</div>
+                <div class="category-tag">엔터</div>
+            </div>
         </div>
-        <div class="solution-content">
-            <div class="solution-badge">TIP 2</div>
-            <div class="solution-title">자막 사용 주의하기</div>
-            <p>자막을 키면 듣기가 아닌 읽기 연습이 됩니다. 처음에는 어렵더라도 자막 없이 듣는 연습을 하세요. 필요하다면 처음에만 한글 자막을 켜고, 점차 영어 자막, 그 후에는 자막 없이 시청하는 방식으로 발전시키세요.</p>
-        </div>
-    </div>
-    
-    <div class="solution-card">
-        <div class="solution-icon">
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
-                <path d="M9 1v7.5A1.5 1.5 0 0 1 7.5 10H1v11a1 1 0 0 0 1 1h14a1 1 0 0 0 1-1V1a1 1 0 0 0-1-1H10a1 1 0 0 0-1 1zm1 2h4v2h-4V3zm0 3h4v2h-4V6zm0 3h4v2h-4V9zm-6 4h10v2H4v-2zm0 3h10v2H4v-2z"/>
-            </svg>
-        </div>
-        <div class="solution-content">
-            <div class="solution-badge">TIP 3</div>
-            <div class="solution-title">흉내내기 훈련법 활용하기</div>
-            <p>좋아하는 영상의 짧은 구간을 반복해서 듣고 따라 말하는 흉내내기 훈련법을 실천하세요. 이 방법은 듣기와 말하기 능력을 동시에 향상시킬 수 있습니다.</p>
-        </div>
-    </div>
-    
-    <div class="solution-card">
-        <div class="solution-icon">
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
-                <path d="M17 19h2v-5h-9V5H5v2h3v7h9v5zm-2-7V5H8v2h5v5h2z"/>
-            </svg>
-        </div>
-        <div class="solution-content">
-            <div class="solution-badge">TIP 4</div>
-            <div class="solution-title">난이도별 시청 전략</div>
-            <p>처음에는 레벨 1-2 채널로 시작해 점차 레벨을 높여가세요. 이해도가 50% 이상이 되는 콘텐츠를 선택하는 것이 중요합니다. 너무 어려운 콘텐츠는 동기부여를 떨어뜨립니다.</p>
+        
+        <div class="column">
+            <h2>영어 유튜브 최대 활용법</h2>
+            
+            <div class="solution-card">
+                <div class="solution-icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                        <path d="M17 10.5V7c0-.55-.45-1-1-1H4c-.55 0-1 .45-1 1v10c0 .55.45 1 1 1h12c.55 0 1-.45 1-1v-3.5l4 4v-11l-4 4z"/>
+                    </svg>
+                </div>
+                <div class="solution-content">
+                    <div class="solution-badge">TIP 1</div>
+                    <div class="solution-title">흉내내기 훈련법</div>
+                    <p>영상의 짧은 구간을 반복해서 듣고 따라 말하는 연습을 하세요. 이 방법은 듣기와 말하기 능력을 동시에 향상시킬 수 있는 효과적인 방법입니다. 좋아하는 영상에서 1-2분 정도의 구간을 선택하고 반복 연습하세요.</p>
+                </div>
+            </div>
+            
+            <div class="solution-card">
+                <div class="solution-icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                        <path d="M11.99 2C6.47 2 2 6.48 2 12s4.47 10 9.99 10C17.52 22 22 17.52 22 12S17.52 2 11.99 2zM12 20c-4.42 0-8-3.58-8-8s3.58-8 8-8 8 3.58 8 8-3.58 8-8 8zm.5-13H11v6l5.25 3.15.75-1.23-4.5-2.67z"/>
+                    </svg>
+                </div>
+                <div class="solution-content">
+                    <div class="solution-badge">TIP 2</div>
+                    <div class="solution-title">시간 활용 전략</div>
+                    <p>유튜브 영상은 밥 먹을 때나, 자기 전에 누워서 볼 수 있습니다. 또한 팟캐스트는 이동 중에도 들을 수 있어 하루 종일 영어에 노출될 수 있는 좋은 방법입니다. 시간대별로 다양한 영어 학습 콘텐츠를 활용하세요.</p>
+                </div>
+            </div>
+            
+            <div class="solution-card">
+                <div class="solution-icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                        <path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/>
+                    </svg>
+                </div>
+                <div class="solution-content">
+                    <div class="solution-badge">TIP 3</div>
+                    <div class="solution-title">알고리즘 활용하기</div>
+                    <p>추천해드린 채널을 몇 개 구독하고 영상을 보다 보면, 유튜브 알고리즘이 비슷한 콘텐츠를 추천해 줍니다. 이를 통해 더 많은 영어 채널을 발견하고 구독할 수 있습니다. 알고리즘의 추천을 활용해 콘텐츠의 폭을 넓히세요.</p>
+                </div>
+            </div>
         </div>
     </div>
     
     <div class="insight-bar">
-        다른 사람들과 함께 성장하세요! 댓글로 여러분이 알고 있는 좋은 영어 유튜브 채널을 추천해주세요.
+        영어공부에 있어서 가장 중요한 것은 꾸준함입니다. 영어 유튜브는 재미있어서 꾸준히 할 수 있는 최고의 학습법입니다.
+    </div>
+    
+    <h2>영어 유튜브 시청이 인생을 바꾸는 이유</h2>
+    
+    <div class="feature-section">
+        <div class="feature-item">
+            <div class="feature-icon">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                    <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8zm-5.5-2.5l7.51-3.49L17.5 6.5 9.99 9.99 6.5 17.5zm5.5-6.6c.61 0 1.1.49 1.1 1.1s-.49 1.1-1.1 1.1-1.1-.49-1.1-1.1.49-1.1 1.1-1.1z"/>
+                </svg>
+            </div>
+            <div class="feature-content">
+                <div class="feature-title">세계적 시각 형성</div>
+                <div class="feature-description">영어 콘텐츠를 소비한다는 것은 대한민국보다 수백 배 큰 시장에서 경쟁을 통해 살아남은 콘텐츠를 접하는 것입니다. 이는 세상을 새로운 시각으로 볼 수 있게 해줍니다.</div>
+            </div>
+        </div>
+        
+        <div class="feature-item">
+            <div class="feature-icon">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                    <path d="M12 22c1.1 0 2-.9 2-2h-4c0 1.1.9 2 2 2zm6-6v-5c0-3.07-1.63-5.64-4.5-6.32V4c0-.83-.67-1.5-1.5-1.5s-1.5.67-1.5 1.5v.68C7.64 5.36 6 7.92 6 11v5l-2 2v1h16v-1l-2-2zm-2 1H8v-6c0-2.48 1.51-4.5 4-4.5s4 2.02 4 4.5v6z"/>
+                </svg>
+            </div>
+            <div class="feature-content">
+                <div class="feature-title">영감과 동기 부여</div>
+                <div class="feature-description">"Do What You Can't"와 같은 영감을 주는 콘텐츠를 통해 새로운 도전을 시작할 수 있습니다. 실제로 영상 제작자도 이러한 영상을 보고 유튜브 채널을 시작하게 되었습니다.</div>
+            </div>
+        </div>
+        
+        <div class="feature-item">
+            <div class="feature-icon">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                    <path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm0 16H5V5h14v14zM7 10h2v7H7zm4-3h2v10h-2zm4 6h2v4h-2z"/>
+                </svg>
+            </div>
+            <div class="feature-content">
+                <div class="feature-title">고품질 정보 습득</div>
+                <div class="feature-description">한국어로는 접하기 어려운 고품질 정보와 콘텐츠를 영어 유튜브를 통해 얻을 수 있습니다. 이는 개인적, 직업적 성장에 큰 도움이 됩니다.</div>
+            </div>
+        </div>
+        
+        <div class="feature-item">
+            <div class="feature-icon">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                    <path d="M20 6h-4V4c0-1.11-.89-2-2-2h-4c-1.11 0-2 .89-2 2v2H4c-1.11 0-1.99.89-1.99 2L2 19c0 1.11.89 2 2 2h16c1.11 0 2-.89 2-2V8c0-1.11-.89-2-2-2zm-6 0h-4V4h4v2z"/>
+                </svg>
+            </div>
+            <div class="feature-content">
+                <div class="feature-title">커리어 기회 확장</div>
+                <div class="feature-description">영어로 정보를 습득하고 소통할 수 있는 능력은 글로벌 커리어 기회를 열어줍니다. 취업, 승진, 해외 진출 등 다양한 기회를 얻을 수 있습니다.</div>
+            </div>
+        </div>
     </div>
     
     <div class="footer">
