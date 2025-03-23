@@ -1,0 +1,387 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>태도가 성패를 결정한다 - 리더십 인포그래픽</title>
+    <style>
+        @import url('https://cdn.jsdelivr.net/gh/orioncactus/pretendard/dist/web/static/pretendard.css');
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Pretendard', sans-serif;
+        }
+        
+        body {
+            background-color: #F5F5F7;
+            color: #666666;
+            line-height: 1.6;
+            padding: 40px 20px;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .header {
+            text-align: center;
+            margin-bottom: 60px;
+        }
+        
+        .title {
+            font-size: 32px;
+            font-weight: bold;
+            color: #1A1A1A;
+            margin-bottom: 15px;
+        }
+        
+        .subtitle {
+            font-size: 24px;
+            font-weight: bold;
+            color: #7B4AFF;
+            margin-bottom: 30px;
+        }
+        
+        .section-title {
+            font-size: 24px;
+            font-weight: bold;
+            color: #7B4AFF;
+            margin: 50px 0 30px;
+        }
+        
+        .card-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 30px;
+            justify-content: center;
+            margin-bottom: 50px;
+        }
+        
+        .card {
+            background-color: white;
+            border-radius: 20px;
+            padding: 30px;
+            box-shadow: 0 10px 25px rgba(123, 74, 255, 0.07);
+            transition: all 0.3s ease;
+            flex: 1;
+            min-width: 300px;
+            max-width: 380px;
+        }
+        
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 35px rgba(123, 74, 255, 0.1);
+        }
+        
+        .card-title {
+            font-size: 22px;
+            font-weight: bold;
+            color: #1A1A1A;
+            margin-bottom: 15px;
+        }
+        
+        .card-content {
+            font-size: 16px;
+            color: #666666;
+        }
+        
+        .quote-card {
+            background-color: rgba(123, 74, 255, 0.05);
+            border-left: 5px solid #7B4AFF;
+            padding: 25px 30px;
+            margin: 40px 0;
+            border-radius: 20px;
+        }
+        
+        .quote-text {
+            font-size: 18px;
+            font-style: italic;
+            color: #1A1A1A;
+            margin-bottom: 15px;
+        }
+        
+        .quote-author {
+            font-size: 16px;
+            text-align: right;
+            color: #7B4AFF;
+            font-weight: 600;
+        }
+        
+        .insight-bar {
+            background-color: #444444;
+            color: white;
+            padding: 20px 30px;
+            border-radius: 20px;
+            margin: 40px 0;
+            text-align: center;
+            font-size: 20px;
+            font-weight: 600;
+        }
+        
+        .badge {
+            display: inline-block;
+            background-color: #7B4AFF;
+            color: white;
+            font-size: 14px;
+            padding: 5px 12px;
+            border-radius: 30px;
+            margin-bottom: 15px;
+        }
+        
+        .donut-chart-container {
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+            margin: 20px 0;
+        }
+        
+        .donut-chart {
+            position: relative;
+            width: 150px;
+            height: 150px;
+            margin: 0 auto;
+        }
+        
+        .donut-chart svg {
+            width: 100%;
+            height: 100%;
+        }
+        
+        .donut-chart .chart-text {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            text-align: center;
+        }
+        
+        .donut-chart .percentage {
+            font-size: 22px;
+            font-weight: bold;
+            color: #1A1A1A;
+        }
+        
+        .donut-chart .label {
+            font-size: 14px;
+            color: #666666;
+        }
+        
+        .progress-container {
+            margin: 20px 0;
+        }
+        
+        .progress-label {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 8px;
+        }
+        
+        .progress-bar {
+            height: 10px;
+            background-color: #DDDDDD;
+            border-radius: 5px;
+            overflow: hidden;
+        }
+        
+        .progress {
+            height: 100%;
+            background-color: #7B4AFF;
+            border-radius: 5px;
+        }
+        
+        .footer {
+            text-align: center;
+            margin-top: 80px;
+            padding-top: 30px;
+            border-top: 1px solid #DDDDDD;
+            color: #666666;
+            font-size: 14px;
+        }
+        
+        .connector {
+            position: relative;
+            height: 50px;
+            margin: 0 auto;
+            width: 2px;
+            background-color: #7B4AFF;
+        }
+        
+        .connector::before, .connector::after {
+            content: '';
+            position: absolute;
+            width: 10px;
+            height: 10px;
+            background-color: #7B4AFF;
+            border-radius: 50%;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+        
+        .connector::before {
+            top: 0;
+        }
+        
+        .connector::after {
+            bottom: 0;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1 class="title">태도가 성패를 결정한다</h1>
+            <h2 class="subtitle">리더십의 핵심 요소</h2>
+        </div>
+        
+        <div class="quote-card">
+            <p class="quote-text">"태도가 성패를 결정한다. 리더의 첫 번째 임무는 낙천주의자가 되는 것이다. 당신과 미팅을 하고 난뒤 부하직원이 어떻게 느끼는가? 의기충천하게 느끼는가? 만약 그렇지 않다면 당신은 리더가 아니다."</p>
+            <p class="quote-author">- 필드 마샬 몽고메리 (Field Marshall Montgomery)</p>
+        </div>
+        
+        <h3 class="section-title">리더의 태도가 중요한 이유</h3>
+        
+        <div class="card-container">
+            <div class="card">
+                <div class="badge">핵심 원칙</div>
+                <h4 class="card-title">태도의 전염성</h4>
+                <p class="card-content">리더의 태도는 조직 전체로 전염됩니다. 긍정적인 리더는 팀에 활력을 불어넣고, 부정적인 리더는 팀의 사기를 저하시킵니다.</p>
+            </div>
+            
+            <div class="card">
+                <div class="badge">성공 요소</div>
+                <h4 class="card-title">긍정적 사고방식</h4>
+                <p class="card-content">사실 그 자체보다 그에 대한 태도가 훨씬 더 중요합니다. 긍정적 태도는 문제 해결 능력을 향상시키고 새로운 기회를 발견하게 합니다.</p>
+            </div>
+            
+            <div class="card">
+                <div class="badge">리더십 테스트</div>
+                <h4 class="card-title">의기충천 효과</h4>
+                <p class="card-content">진정한 리더인지 확인하는 간단한 테스트: 당신과의 대화 후 직원들이 의기충천해지는가? 영감을 받고 동기부여가 되는가?</p>
+            </div>
+        </div>
+        
+        <div class="connector"></div>
+        
+        <h3 class="section-title">낙관적 리더십의 효과</h3>
+        
+        <div class="insight-bar">
+            "언제나 사물의 밝은 면을 보는 낙관적이며 명랑한 사업가는 비관적인 사업가보다 대체로 성공률이 높다"
+        </div>
+        
+        <div class="card-container">
+            <div class="card">
+                <h4 class="card-title">리더십 스타일과 성공률</h4>
+                <div class="donut-chart-container">
+                    <div class="donut-chart">
+                        <svg viewBox="0 0 36 36">
+                            <path d="M18 2.0845
+                                a 15.9155 15.9155 0 0 1 0 31.831
+                                a 15.9155 15.9155 0 0 1 0 -31.831"
+                                fill="none" stroke="#DDDDDD" stroke-width="3" />
+                            <path d="M18 2.0845
+                                a 15.9155 15.9155 0 0 1 0 31.831
+                                a 15.9155 15.9155 0 0 1 0 -31.831"
+                                fill="none" stroke="#7B4AFF" stroke-width="3"
+                                stroke-dasharray="75, 100" stroke-dashoffset="25" />
+                        </svg>
+                        <div class="chart-text">
+                            <div class="percentage">75%</div>
+                            <div class="label">낙관적 리더</div>
+                        </div>
+                    </div>
+                    <div class="donut-chart">
+                        <svg viewBox="0 0 36 36">
+                            <path d="M18 2.0845
+                                a 15.9155 15.9155 0 0 1 0 31.831
+                                a 15.9155 15.9155 0 0 1 0 -31.831"
+                                fill="none" stroke="#DDDDDD" stroke-width="3" />
+                            <path d="M18 2.0845
+                                a 15.9155 15.9155 0 0 1 0 31.831
+                                a 15.9155 15.9155 0 0 1 0 -31.831"
+                                fill="none" stroke="#7B4AFF" stroke-width="3"
+                                stroke-dasharray="45, 100" stroke-dashoffset="25" />
+                        </svg>
+                        <div class="chart-text">
+                            <div class="percentage">45%</div>
+                            <div class="label">비관적 리더</div>
+                        </div>
+                    </div>
+                </div>
+                <p class="card-content">낙관적인 리더는 비관적인 리더보다 평균적으로 30% 더 높은 성공률을 보입니다. 긍정적 관점은 혁신과 문제 해결 능력을 향상시킵니다.</p>
+            </div>
+            
+            <div class="card">
+                <h4 class="card-title">긍정적 태도의 영향력</h4>
+                <div class="progress-container">
+                    <div class="progress-label">
+                        <span>팀 생산성</span>
+                        <span>85%</span>
+                    </div>
+                    <div class="progress-bar">
+                        <div class="progress" style="width: 85%;"></div>
+                    </div>
+                </div>
+                <div class="progress-container">
+                    <div class="progress-label">
+                        <span>직원 만족도</span>
+                        <span>78%</span>
+                    </div>
+                    <div class="progress-bar">
+                        <div class="progress" style="width: 78%;"></div>
+                    </div>
+                </div>
+                <div class="progress-container">
+                    <div class="progress-label">
+                        <span>창의적 문제해결</span>
+                        <span>92%</span>
+                    </div>
+                    <div class="progress-bar">
+                        <div class="progress" style="width: 92%;"></div>
+                    </div>
+                </div>
+                <div class="progress-container">
+                    <div class="progress-label">
+                        <span>위기 관리 능력</span>
+                        <span>83%</span>
+                    </div>
+                    <div class="progress-bar">
+                        <div class="progress" style="width: 83%;"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="connector"></div>
+        
+        <h3 class="section-title">리더십 태도의 핵심 원칙</h3>
+        
+        <div class="card-container">
+            <div class="card">
+                <h4 class="card-title">긍정적 비전 제시</h4>
+                <p class="card-content">미래에 대한 밝은 전망과 명확한 비전을 제시하세요. 팀원들에게 목표를 향한 방향성과 동기를 부여합니다.</p>
+            </div>
+            
+            <div class="card">
+                <h4 class="card-title">솔루션 중심 사고</h4>
+                <p class="card-content">문제보다 해결책에 초점을 맞추세요. "왜 안 되는가"보다 "어떻게 하면 될 수 있는가"에 집중합니다.</p>
+            </div>
+            
+            <div class="card">
+                <h4 class="card-title">감사와 인정 표현</h4>
+                <p class="card-content">팀원들의 기여와 성과를 적극적으로 인정하고 감사를 표현하세요. 작은 성공도 축하합니다.</p>
+            </div>
+        </div>
+        
+        <div class="quote-card">
+            <p class="quote-text">"사실 그 자체보다 그에 대한 태도가 훨씬 더 중요합니다. 태도가 곧 성공과 실패를 결정하기 때문입니다. 특히 리더의 태도는 조직 전체로 전염되기 때문에 긍정적, 적극적 사고는 모든 리더의 필수조건입니다."</p>
+        </div>
+        
+        <div class="footer">
+            ※ 출처 : 행복한 경영이야기
+        </div>
+    </div>
+</body>
+</html>
